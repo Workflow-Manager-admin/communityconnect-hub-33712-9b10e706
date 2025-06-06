@@ -42,8 +42,23 @@ function App() {
     fetchEvents();
   }, []);
 
-  // Fallback static events for simulation
+  // Fallback static events for simulation (with Chennai-specific for demo)
   const STATIC_EVENTS = [
+    {
+      name: "Chennai Heritage Walk",
+      date: "2024-07-08",
+      location: "Chennai",
+      description: "Discover Chennai's heritage with guided walking tours!",
+      link: "https://events.example.com/chennai-heritage",
+    },
+    {
+      name: "Marina Beach Cleanup",
+      date: "2024-07-11",
+      location: "Chennai",
+      description: "Join the community in keeping Marina Beach clean.",
+      link: "https://events.example.com/marina-cleanup",
+    },
+    // Original demo events, non-Chennai (will be filtered out)
     {
       name: "Open Mic Night",
       date: "2024-07-08",
@@ -149,6 +164,7 @@ function App() {
 
   // Filter and prepare events for Chennai (merge API, static, and user events)
   function isChennaiEvent(e) {
+    // Accept if Chennai is set as location (case-insensitive), or mentioned in description/title
     return (
       (e.location && e.location.toLowerCase().includes('chennai')) ||
       (e.Description && e.Description.toLowerCase().includes('chennai')) ||
@@ -172,13 +188,12 @@ function App() {
         )
       : STATIC_EVENTS;
 
-  // Always show Chennai events (from any source) + user-submitted in Chennai
+  // Only display Chennai events for dashboard and events page, userEvents are all tied to Chennai
   const dashboardEvents = [
-    ...userEvents, // all userEvents are for Chennai
+    ...userEvents,
     ...allCandidateEvents.filter(isChennaiEvent),
   ];
 
-  // The same in the dedicated "Events" section
   const eventsPageEvents = [
     ...userEvents,
     ...allCandidateEvents.filter(isChennaiEvent),
