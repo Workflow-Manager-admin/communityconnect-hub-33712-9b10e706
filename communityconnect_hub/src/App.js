@@ -41,6 +41,31 @@ function App() {
     fetchEvents();
   }, []);
 
+  // Fallback static events for simulation
+  const STATIC_EVENTS = [
+    {
+      name: "Open Mic Night",
+      date: "2024-07-08",
+      location: "Community Hall",
+      description: "Share music, poetry, or comedy with your neighbors!",
+      link: "https://events.example.com/open-mic",
+    },
+    {
+      name: "Food Drive Pickup",
+      date: "2024-07-10",
+      location: "Main Square",
+      description: "Bring nonperishable foods to support local families.",
+      link: "https://events.example.com/food-drive",
+    },
+    {
+      name: "Summer Park Clean-Up",
+      date: "2024-07-15",
+      location: "Lakeside Park",
+      description: "Volunteer to help keep our parks clean and green.",
+      link: "https://events.example.com/cleanup",
+    },
+  ];
+
   // PUBLIC_INTERFACE
   async function fetchNews() {
     try {
@@ -107,6 +132,22 @@ function App() {
       res.phone.includes(search)
   );
 
+  // Prepare events for dashboard: merged list for UX continuity
+  const dashboardEvents =
+    Array.isArray(events) && events.length > 0
+      ? events.map(e =>
+          e.name && e.date
+            ? e
+            : {
+                name: e.API || "Untitled Event",
+                date: "",
+                location: "",
+                description: e.Description || "",
+                link: e.Link || "",
+              }
+        )
+      : STATIC_EVENTS;
+
   return (
     <div className="app" style={{ background: 'var(--base-dark)', color: 'var(--text-color)' }}>
       <Navbar
@@ -126,7 +167,9 @@ function App() {
               <section style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: 48 }}>
                 <SearchBar value={search} onChange={setSearch} />
                 <QuickLinks onNav={handleSectionChange} />
-                <InfoDashboard news={news} weather={weather} events={events} />
+                <InfoDashboard news={news} weather={weather} events={dashboardEvents} />
+                {/* Events Section */}
+                <EventsSection events={dashboardEvents} />
               </section>
             </div>
           )}
