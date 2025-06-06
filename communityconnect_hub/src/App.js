@@ -513,6 +513,99 @@ function WeatherCard({ weather }) {
 }
 
 // PUBLIC_INTERFACE
+function NewsSection({ news }) {
+  // NewsAPI fallback: show error if no news
+  const failed = !news || news.length === 0;
+  return (
+    <section
+      style={{
+        background: "#181820",
+        borderRadius: 12,
+        border: "2px solid #ff0000",
+        boxShadow: "0 1px 8px #000c",
+        padding: "26px 20px",
+        maxWidth: 700,
+        margin: "0 auto 16px auto",
+        marginTop: 8,
+        marginBottom: 12,
+        color: "#fff"
+      }}
+      aria-label="Chennai News"
+    >
+      <h2
+        style={{
+          color: "#ff0000",
+          marginTop: 0,
+          marginBottom: 14,
+          fontWeight: 700,
+          fontSize: "1.6rem",
+          letterSpacing: 0.2
+        }}
+      >
+        Chennai News Headlines
+      </h2>
+      {failed ? (
+        <div
+          style={{
+            color: "#ffa8a8",
+            fontSize: "1.1rem",
+            fontWeight: 500,
+            padding: "12px 0"
+          }}
+        >
+          Unable to load current Chennai news. Please check your connection or try later.
+        </div>
+      ) : (
+        <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+          {news.map((item, idx) => (
+            <li
+              key={item.id || item.url || idx}
+              style={{
+                marginBottom: 13,
+                padding: "7px 0",
+                borderLeft: "4px solid #ff0000",
+                background: "#101015",
+                borderRadius: 6,
+                boxShadow: "0 1px 3px #0005",
+                transition: "background 0.16s",
+              }}
+            >
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "#ff3b10",
+                  fontWeight: 700,
+                  fontSize: "1.08rem",
+                  textDecoration: "underline"
+                }}
+              >
+                {item.title}
+              </a>
+              <div
+                style={{
+                  fontSize: "0.98rem",
+                  color: "#e1dede",
+                  marginTop: 2
+                }}
+              >
+                {item.description ? item.description.substring(0, 106) + "..." : ""}
+                {item.source && (
+                  <span style={{ color: "#ff6b00", marginLeft: 8, fontSize: "0.97rem" }}>
+                    [{item.source}]
+                  </span>
+                )}
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  );
+}
+
+// PUBLIC_INTERFACE
 function NewsList({ news, compact }) {
   if (!news || !news.length) return <div>No news available</div>;
   return (
