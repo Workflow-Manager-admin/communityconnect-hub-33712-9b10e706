@@ -512,10 +512,14 @@ function WeatherCard({ weather }) {
   );
 }
 
+/**
+ * Prominently styled news display for Chennai headlines, with strong error fallback for unavailable API/data.
+ */
 // PUBLIC_INTERFACE
 function NewsSection({ news }) {
   // NewsAPI fallback: show error if no news
   const failed = !news || news.length === 0;
+
   return (
     <section
       style={{
@@ -528,7 +532,8 @@ function NewsSection({ news }) {
         margin: "0 auto 16px auto",
         marginTop: 8,
         marginBottom: 12,
-        color: "#fff"
+        color: "#fff",
+        transition: "background 0.2s"
       }}
       aria-label="Chennai News"
     >
@@ -548,12 +553,18 @@ function NewsSection({ news }) {
         <div
           style={{
             color: "#ffa8a8",
-            fontSize: "1.1rem",
+            fontSize: "1.15rem",
             fontWeight: 500,
-            padding: "12px 0"
+            padding: "14px 0",
+            textAlign: "center"
           }}
         >
-          Unable to load current Chennai news. Please check your connection or try later.
+          <span style={{fontWeight:700}}>Unable to load current Chennai news.</span>
+          <br />
+          <span>
+            For current news, please check again later, or verify your connection / API settings.<br/>
+            <span style={{color:"#888",fontSize:"0.98rem"}}>Tip: Even if live news is unavailable, you can still explore community events, resources, and updates on this platform.</span>
+          </span>
         </div>
       ) : (
         <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
@@ -600,6 +611,12 @@ function NewsSection({ news }) {
             </li>
           ))}
         </ul>
+      )}
+      {/* Robust fallback: In rare case static fallback is empty, show a very clear offline message */}
+      {failed && (
+        <div style={{ textAlign: "center", color: '#ff5555', fontWeight: 600, marginTop: 10, fontSize:'1.04rem' }}>
+          Stay tuned for Chennai news — or visit official local portals for updates!
+        </div>
       )}
     </section>
   );
