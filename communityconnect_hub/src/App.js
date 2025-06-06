@@ -11,7 +11,13 @@ import './App.css';
 
 // Mock APIs for demonstration purposes. Replace endpoints with real ones for live data.
 
-const NEWS_API = 'https://api.currentsapi.services/v1/latest-news?apiKey=demo';
+/**
+ * Use NewsAPI.org - fetch top headlines mentioning "Chennai" (API key needed for real use, here is a placeholder):
+ *   API endpoint: https://newsapi.org/v2/everything?q=Chennai%20India&language=en&sortBy=publishedAt&apiKey=YOUR_API_KEY
+ * Demo: falls back to existing mock API if NewsAPI.org fails. For production, replace "YOUR_API_KEY" and uncomment.
+ */
+const NEWS_API =
+  "https://newsapi.org/v2/everything?q=Chennai%20India&language=en&sortBy=publishedAt&pageSize=5&apiKey=YOUR_API_KEY"; // Replace with real key!
 const WEATHER_API = 'https://api.open-meteo.com/v1/forecast?latitude=40.7128&longitude=-74.006&current_weather=true';
 const EVENTS_API = 'https://api.publicapis.org/entries?category=Events'; // Not real events! Replace with a true local event API.
 
@@ -87,7 +93,21 @@ function App() {
     try {
       const res = await fetch(NEWS_API);
       const data = await res.json();
-      setNews(Array.isArray(data.news) ? data.news.slice(0, 5) : []);
+      // NewsAPI.org returns { articles: [...] }, fallback to [] if not exist
+      if (Array.isArray(data.articles) && data.articles.length) {
+        setNews(
+          data.articles.slice(0, 5).map((n, idx) => ({
+            id: n.url || n.title || idx,
+            title: n.title,
+            url: n.url,
+            description: n.description,
+            publishedAt: n.publishedAt,
+            source: n.source?.name || "",
+          }))
+        );
+      } else {
+        setNews([]);
+      }
     } catch {
       setNews([]);
     }
@@ -216,6 +236,7 @@ function App() {
             <div>
               <HeroHeader />
               <section style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: 48 }}>
+                <NewsSection news={news} />
                 <SearchBar value={search} onChange={setSearch} />
                 <QuickLinks onNav={handleSectionChange} />
                 <InfoDashboard news={news} weather={weather} events={dashboardEvents} />
