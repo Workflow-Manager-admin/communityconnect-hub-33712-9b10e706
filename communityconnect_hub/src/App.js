@@ -27,6 +27,7 @@ function App() {
   const [news, setNews] = useState([]);
   const [weather, setWeather] = useState(null);
   const [events, setEvents] = useState([]);
+  const [userEvents, setUserEvents] = useState([]); // User-added events
   const [search, setSearch] = useState('');
   const [activeSection, setActiveSection] = useState('dashboard');
   const [user, setUser] = useState(null);
@@ -123,6 +124,20 @@ function App() {
     setFeedbacks([newFeedback, ...feedbacks]);
     setFeedbackOpen(false);
   }
+  // Handler for user adding a new event
+  // PUBLIC_INTERFACE
+  function handleAddEvent(eventData) {
+    // Only accept events with location as Chennai (or force location as Chennai)
+    const newEvent = {
+      ...eventData,
+      location: 'Chennai',
+      date: eventData.date || '',
+      name: eventData.name,
+      description: eventData.description || '',
+      link: eventData.link || '',
+    };
+    setUserEvents([newEvent, ...userEvents]);
+  }
 
   // Filter resources by search string
   const filteredResources = COMMUNITY_RESOURCES.filter(
@@ -132,8 +147,17 @@ function App() {
       res.phone.includes(search)
   );
 
-  // Prepare events for dashboard: merged list for UX continuity
-  const dashboardEvents =
+  // Filter and prepare events for Chennai (merge API, static, and user events)
+  function isChennaiEvent(e) {
+    return (
+      (e.location && e.location.toLowerCase().includes('chennai')) ||
+      (e.Description && e.Description.toLowerCase().includes('chennai')) ||
+      (e.name && e.name.toLowerCase().includes('chennai'))
+    );
+  }
+
+  // Compose the event list for display, always include user events at the top
+  const allCandidateEvents =
     Array.isArray(events) && events.length > 0
       ? events.map(e =>
           e.name && e.date
@@ -147,6 +171,18 @@ function App() {
               }
         )
       : STATIC_EVENTS;
+
+  // Always show Chennai events (from any source) + user-submitted in Chennai
+  const dashboardEvents = [
+    ...userEvents, // all userEvents are for Chennai
+    ...allCandidateEvents.filter(isChennaiEvent),
+  ];
+
+  // The same in the dedicated "Events" section
+  const eventsPageEvents = [
+    ...userEvents,
+    ...allCandidateEvents.filter(isChennaiEvent),
+  ];
 
   return (
     <div className="app" style={{ background: 'var(--base-dark)', color: 'var(--text-color)' }}>
@@ -169,7 +205,7 @@ function App() {
                 <QuickLinks onNav={handleSectionChange} />
                 <InfoDashboard news={news} weather={weather} events={dashboardEvents} />
                 {/* Events Section */}
-                <EventsSection events={dashboardEvents} />
+                <EventsSection events={dashboardEvents} onAddEvent={handleAddEvent} />
               </section>
             </div>
           )}
@@ -186,8 +222,10 @@ function App() {
           {/* EVENTS */}
           {activeSection === 'events' && (
             <section style={{ margin: '24px 0' }}>
-              <h2>Local Events</h2>
-              <EventList events={events} />
+              <h2>Local Events in Chennai</h2>
+              <EventForm onAddEvent={handleAddEvent} />
+              <div style={{ margin: '18px 0' }} />
+              <EventList events={eventsPageEvents} />
             </section>
           )}
 
