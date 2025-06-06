@@ -462,20 +462,137 @@ function NewsList({ news, compact }) {
   );
 }
 
+/**
+ * EventsSection displays a visually distinct section for community events
+ * on the dashboard, using static or fetched data.
+ * Styled for the dark theme with primary/secondary/accent colors.
+ *
+ * Props:
+ *   events: Array of event objects { name, date, location, description, link }
+ */
+// PUBLIC_INTERFACE
+function EventsSection({ events }) {
+  return (
+    <section
+      style={{
+        margin: "36px 0 0 0",
+        background: "#000000",
+        borderRadius: 12,
+        border: "1.5px solid #ff0000",
+        boxShadow: "0 2px 12px #0006",
+        padding: "32px 28px",
+        maxWidth: 700,
+        marginLeft: "auto",
+        marginRight: "auto",
+      }}
+    >
+      <h2
+        style={{
+          color: "#ff0000",
+          marginTop: 0,
+          marginBottom: 18,
+          fontWeight: 700,
+          fontSize: "2rem",
+          letterSpacing: 0.5,
+        }}
+      >
+        Upcoming Community Events
+      </h2>
+      {(!events || !events.length) && (
+        <div style={{ color: "#fff" }}>No upcoming events at this time.</div>
+      )}
+      <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+        {events &&
+          events.map((e, idx) => (
+            <li
+              key={e.link || e.name || idx}
+              style={{
+                marginBottom: 16,
+                padding: "18px 12px",
+                background: "#181818",
+                borderRadius: 8,
+                boxShadow: "0 1px 5px #1115",
+                display: "flex",
+                alignItems: "flex-start",
+                gap: 18,
+                borderLeft: "4px solid #ff0000",
+              }}
+            >
+              <div style={{ flex: "1" }}>
+                <div
+                  style={{
+                    fontWeight: 600,
+                    color: "#ffffff",
+                    fontSize: "1.12rem",
+                  }}
+                >
+                  {e.name || e.API || "Event"}
+                </div>
+                <div style={{ color: "#bbbbbb", fontSize: "1rem", margin: "2px 0" }}>
+                  {e.date && (
+                    <span style={{ marginRight: 10 }}>
+                      <span style={{ color: "#ff0000" }}>🗓</span> {e.date}
+                    </span>
+                  )}
+                  {e.location && (
+                    <span>
+                      <span style={{ color: "#ff0000" }}>📍</span> {e.location}
+                    </span>
+                  )}
+                </div>
+                <div style={{ color: "#fff", fontSize: "0.98rem", marginTop: 5, marginBottom: 6 }}>
+                  {e.description ||
+                    e.Description?.substring(0, 120) ||
+                    ""}
+                </div>
+                <div>
+                  {e.link || e.Link ? (
+                    <a
+                      href={e.link || e.Link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        color: "#ff0000",
+                        textDecoration: "underline",
+                        fontWeight: 600,
+                      }}
+                    >
+                      Event Details
+                    </a>
+                  ) : null}
+                </div>
+              </div>
+            </li>
+          ))}
+      </ul>
+    </section>
+  );
+}
+
 // PUBLIC_INTERFACE
 function EventList({ events, compact }) {
   if (!events || !events.length) return <div>No events available</div>;
   return (
     <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
       {events.map(e => (
-        <li key={e.Link || e.API} style={{ marginBottom: 10 }}>
+        <li key={e.Link || e.API || e.link || e.name} style={{ marginBottom: 10 }}>
           <span style={{ color: '#ffffff', fontWeight: 500, fontSize: '1.05rem' }}>
             {e.API || e.name}
           </span>
           <br />
           {!compact && (
             <span style={{ color: '#bbbbbb', fontSize: '0.96rem' }}>
-              {e.Description ? e.Description.substring(0, 100) : ''}{e.Link && <> (<a href={e.Link} target="_blank" rel="noopener noreferrer" style={{ color: '#ff0000' }}>details</a>)</>}
+              {e.Description
+                ? e.Description.substring(0, 100)
+                : e.description
+                ? e.description.substring(0, 100)
+                : ''}
+              {(e.Link || e.link) && (
+                <>
+                  {' '}
+                  (<a href={e.Link || e.link} target="_blank" rel="noopener noreferrer" style={{ color: '#ff0000' }}>details</a>)
+                </>
+              )}
             </span>
           )}
         </li>
