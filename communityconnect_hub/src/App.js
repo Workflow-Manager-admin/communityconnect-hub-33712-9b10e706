@@ -501,15 +501,11 @@ function NewsList({ news, compact }) {
 }
 
 /**
- * EventsSection displays a visually distinct section for community events
- * on the dashboard, using static or fetched data.
- * Styled for the dark theme with primary/secondary/accent colors.
- *
- * Props:
- *   events: Array of event objects { name, date, location, description, link }
+ * EventsSection displays a visually distinct section for community events.
+ * Now includes an add-event form if onAddEvent is provided.
  */
 // PUBLIC_INTERFACE
-function EventsSection({ events }) {
+function EventsSection({ events, onAddEvent }) {
   return (
     <section
       style={{
@@ -534,10 +530,11 @@ function EventsSection({ events }) {
           letterSpacing: 0.5,
         }}
       >
-        Upcoming Community Events
+        Upcoming Community Events in Chennai
       </h2>
+      {onAddEvent && <EventForm onAddEvent={onAddEvent} />}
       {(!events || !events.length) && (
-        <div style={{ color: "#fff" }}>No upcoming events at this time.</div>
+        <div style={{ color: "#fff", margin: "10px 0" }}>No upcoming events at this time.</div>
       )}
       <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
         {events &&
@@ -604,6 +601,103 @@ function EventsSection({ events }) {
           ))}
       </ul>
     </section>
+  );
+}
+
+/**
+ * EventForm - Small local event submission form for Chennai events
+ * Always assigns location as 'Chennai', no option to override for locality.
+ */
+// PUBLIC_INTERFACE
+function EventForm({ onAddEvent }) {
+  const [name, setName] = React.useState('');
+  const [date, setDate] = React.useState('');
+  const [description, setDescription] = React.useState('');
+  const [link, setLink] = React.useState('');
+  const [msg, setMsg] = React.useState('');
+
+  // PUBLIC_INTERFACE
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!name || !date) {
+      setMsg('Event name and date are required');
+      return;
+    }
+    onAddEvent({
+      name,
+      date,
+      description,
+      link,
+    });
+    setName('');
+    setDate('');
+    setDescription('');
+    setLink('');
+    setMsg('Event submitted!');
+    setTimeout(() => setMsg(''), 1800);
+  }
+  return (
+    <form
+      style={{
+        display: 'flex',
+        gap: 16,
+        flexWrap: 'wrap',
+        background: '#181818',
+        borderRadius: 8,
+        marginBottom: 18,
+        padding: 16,
+        alignItems: 'center'
+      }}
+      onSubmit={handleSubmit}
+    >
+      <div style={{ minWidth: 150, flex: 1 }}>
+        <input
+          type="text"
+          value={name}
+          onChange={e => setName(e.target.value)}
+          placeholder="Event Name"
+          style={{ width: '100%', padding: 8, borderRadius: 4, border: '1px solid #ff0000', background: '#222', color: '#fff' }}
+        />
+      </div>
+      <div style={{ minWidth: 120 }}>
+        <input
+          type="date"
+          value={date}
+          onChange={e => setDate(e.target.value)}
+          style={{ width: '100%', padding: 8, borderRadius: 4, border: '1px solid #ff0000', background: '#222', color: '#fff' }}
+        />
+      </div>
+      <div style={{ minWidth: 150, flex: 2 }}>
+        <input
+          type="text"
+          value={description}
+          onChange={e => setDescription(e.target.value)}
+          placeholder="Description"
+          style={{ width: '100%', padding: 8, borderRadius: 4, border: '1px solid #ff0000', background: '#222', color: '#fff' }}
+        />
+      </div>
+      <div style={{ minWidth: 150, flex: 2 }}>
+        <input
+          type="text"
+          value={link}
+          onChange={e => setLink(e.target.value)}
+          placeholder="Event Link (optional)"
+          style={{ width: '100%', padding: 8, borderRadius: 4, border: '1px solid #ff0000', background: '#222', color: '#fff' }}
+        />
+      </div>
+      <button
+        className="btn"
+        style={{ background: '#ff0000', color: '#fff', minWidth: 90 }}
+        type="submit"
+      >
+        Add Event
+      </button>
+      {msg && (
+        <div style={{ color: '#00ff99', marginLeft: 8, fontWeight: 500 }}>{msg}</div>
+      )}
+      {/* Hidden - always set to Chennai */}
+      <input type="hidden" value="Chennai" />
+    </form>
   );
 }
 
