@@ -22,9 +22,70 @@ const WEATHER_API = 'https://api.open-meteo.com/v1/forecast?latitude=40.7128&lon
 const EVENTS_API = 'https://api.publicapis.org/entries?category=Events'; // Not real events! Replace with a true local event API.
 
 const COMMUNITY_RESOURCES = [
-  { name: 'Central Shelter', type: 'Shelter', phone: '555-1212', address: '123 Main St', link: 'https://centralshelter.org' },
-  { name: 'Food Bank', type: 'Food Bank', phone: '555-3434', address: '456 Oak Ave', link: 'https://foodbank.org' },
-  { name: 'Emergency Services', type: 'Emergency', phone: '911', address: 'N/A', link: null },
+  // Chennai-based local resources: Shelters, Food Banks, Emergency Contacts
+  {
+    name: 'Greater Chennai Corporation Night Shelter – Egmore',
+    type: 'Shelter',
+    phone: '044-28414577',
+    address: 'No. 22, Casa Major Road, Egmore, Chennai – 600008',
+    link: 'https://chennaicorporation.gov.in'
+  },
+  {
+    name: 'Institute of Mental Health – Women\'s Shelter',
+    type: 'Shelter',
+    phone: '044-26411667',
+    address: 'Medavakkam Tank Rd, Kilpauk, Chennai – 600010',
+    link: null
+  },
+  {
+    name: 'Udavum Karangal – Shelter & Rehabilitation',
+    type: 'Shelter',
+    phone: '044-26152383',
+    address: '460, NSK Nagar, Arumbakkam, Chennai – 600106',
+    link: 'https://www.udavumkarangal.org/'
+  },
+  {
+    name: 'Food Bank Chennai',
+    type: 'Food Bank',
+    phone: '81448 09494',
+    address: '19, Trustpuram 6th Cross Street, Kodambakkam, Chennai – 600024',
+    link: 'https://www.facebook.com/foodbankchennai/'
+  },
+  {
+    name: 'Chennai Food Bank',
+    type: 'Food Bank',
+    phone: '044-42690044',
+    address: 'No.10, Sir P.S.Sivasamy Salai, Mylapore, Chennai – 600004',
+    link: 'https://chennai.foodbankindia.org/'
+  },
+  {
+    name: 'Chennai District Disaster Management Emergency',
+    type: 'Emergency',
+    phone: '1077',
+    address: 'Chennai Collectorate, Rajaji Salai, Chennai – 600001',
+    link: 'https://chennai.nic.in/disaster-management/'
+  },
+  {
+    name: 'Chennai Fire & Rescue',
+    type: 'Emergency',
+    phone: '101',
+    address: 'Multiple Stations – Chennai',
+    link: 'https://tnfrs.tn.gov.in/'
+  },
+  {
+    name: 'City Police Control Room (Chennai)',
+    type: 'Emergency',
+    phone: '100',
+    address: 'All Over Chennai',
+    link: 'https://chennai.police.gov.in/'
+  },
+  {
+    name: 'Women Helpline (Chennai)',
+    type: 'Emergency',
+    phone: '1091',
+    address: 'All Over Chennai',
+    link: null
+  },
 ];
 
 // PUBLIC_INTERFACE
