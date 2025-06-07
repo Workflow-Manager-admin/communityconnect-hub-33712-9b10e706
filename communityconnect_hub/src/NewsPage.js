@@ -10,9 +10,10 @@ function NewsPage() {
   // IMPORTANT: In real applications, never commit API keys directly in frontend code!
   // For this isolated task, we're using the provided API key directly.
   // In production, store this in an environment variable (e.g., process.env.REACT_APP_NEWS_API_KEY).
+  // Security Note: API keys exposed in frontend code risk being misused—always secure keys in a backend/proxy for any sensitive or billable usage.
 
-  const NEWS_API_KEY = "737e634c6ef84eb4a280c96c4ec7815f";
-  // Use a headline source with test API key and fallback for NewsAPI limitations
+  const NEWS_API_KEY = "09ee7073a86ef41d918be081ebc5f19c";
+  // Use a headline source with target API key and fallback for NewsAPI limitations
   // Note: NewsAPI.org does not allow requests from client/browser with a free plan.
   // We'll try a proxy. If still failing, display a connection explanation.
 
