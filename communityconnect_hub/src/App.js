@@ -215,7 +215,7 @@ function App() {
             margin: "32px 0",
           }}
         >
-          <WeatherPage weather={weather} />
+          <WeatherPage />
           <NewsPage />
           <EventsPage events={events} />
         </section>
@@ -261,7 +261,7 @@ function App() {
               />
               <Route
                 path="/weather"
-                element={<WeatherPage weather={weather} />}
+                element={<WeatherPage />}
               />
               <Route
                 path="/events"
