@@ -9,6 +9,15 @@ import React from "react";
  */
 function NewsPage() {
   const newsUrl = "https://news.google.com/home?hl=en-IN&gl=IN&ceid=IN:en";
+  // Handler for click/keyboard activation
+  function openNews(e) {
+    // Allow both click and keyboard activation
+    if (e.type === "click" || e.key === "Enter" || e.key === " ") {
+      window.open(newsUrl, "_blank", "noopener,noreferrer");
+      // Prevent default only for keyboard event to avoid duplicate (for <button>)
+      if (e.type !== "click") e.preventDefault();
+    }
+  }
   return (
     <section
       className="news-section"
@@ -40,10 +49,8 @@ function NewsPage() {
       >
         National News (India)
       </h2>
-      <a
-        href={newsUrl}
-        target="_blank"
-        rel="noopener noreferrer"
+      <button
+        type="button"
         className="btn btn-large"
         style={{
           background: "var(--secondary)",
@@ -58,18 +65,17 @@ function NewsPage() {
           margin: "0 auto",
           marginTop: 20,
           transition: "background 0.17s, color 0.17s",
-          outline: "none"
+          outline: "none",
+          cursor: "pointer"
         }}
         aria-label="Open Google News India in a new tab"
         tabIndex={0}
-        onKeyDown={e => {
-          if (e.key === "Enter" || e.key === " ") {
-            window.open(newsUrl, "_blank", "noopener noreferrer");
-          }
-        }}
+        onClick={openNews}
+        onKeyDown={openNews}
       >
-        Open Google News India&nbsp;<span aria-hidden="true" style={{ fontWeight: 900, fontSize: "1.19em" }}>&#8599;</span>
-      </a>
+        Open Google News India&nbsp;
+        <span aria-hidden="true" style={{ fontWeight: 900, fontSize: "1.19em" }}>&#8599;</span>
+      </button>
       <div style={{
         color: "var(--text-secondary)",
         marginTop: 22,
