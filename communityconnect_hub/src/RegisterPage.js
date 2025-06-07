@@ -28,22 +28,12 @@ function RegisterPage({ user, regForm, setRegForm, setUser }) {
     setUser({ ...regForm });
   }
   return (
-    <section className="user-section" id="account" style={{ marginTop: 42 }}>
-      <h2 style={{ color: "var(--accent)" }}>
+    <section className="cc-unified-section" id="account" style={{ marginTop: 42, maxWidth: 430, marginLeft:"auto", marginRight:"auto" }}>
+      <h2 style={{ color: "var(--accent)", fontWeight: 800, fontSize: "2rem" }}>
         {user ? "Your Account" : "Register for Updates"}
       </h2>
       {user ? (
-        <div
-          style={{
-            background: "#181818",
-            color: "var(--accent)",
-            padding: 22,
-            borderRadius: 10,
-            border: "1.2px solid var(--border-color)",
-            maxWidth: 350,
-            marginBottom: 14,
-          }}
-        >
+        <div className="cc-card" style={{ background: "#181818", color: "var(--accent)", maxWidth: 350, marginBottom: 14 }}>
           <div style={{ fontWeight: 500, fontSize: "1.1em" }}>
             Hello, {user.name ? user.name : "User"}!
           </div>
@@ -67,14 +57,8 @@ function RegisterPage({ user, regForm, setRegForm, setUser }) {
         </div>
       ) : (
         <form
-          style={{
-            background: "#181818",
-            padding: 22,
-            borderRadius: 10,
-            maxWidth: 350,
-            border: "1.2px solid var(--border-color)",
-            color: "var(--accent)"
-          }}
+          className="cc-card"
+          style={{ background: "#181818", maxWidth: 350, color: "var(--accent)" }}
           onSubmit={handleRegister}
           aria-label="User Registration"
         >

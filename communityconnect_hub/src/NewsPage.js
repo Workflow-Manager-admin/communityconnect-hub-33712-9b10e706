@@ -142,23 +142,16 @@ function NewsPage() {
     letterSpacing: ".01em"
   };
 
-  // Grid layout for cards
-  const gridStyle = {
-    display: "flex",
-    flexWrap: "wrap",
-    gap: 22,
-    width: "100%",
-    justifyContent: "center",
-    marginTop: 18
-  };
-
+  // Card grid is unified
   return (
     <section
-      className="news-section"
+      className="cc-unified-section"
       aria-label="Chennai News"
       style={{
-        margin: "24px auto 30px",
-        padding: "18px 0 36px 0"
+        marginTop: 32,
+        marginBottom: 30,
+        background: "var(--container-bg)",
+        boxShadow: "0 2px 22px #0001",
       }}
     >
       <h2
@@ -201,17 +194,16 @@ function NewsPage() {
               {apiError}
             </div>
           )}
-          <div style={gridStyle}>
+          <div className="cc-card-grid" style={{justifyContent: "center", marginTop: 4}}>
             {articles.slice(0, 6).map((article, idx) => (
               <article
                 key={article.url || idx}
                 tabIndex={0}
                 aria-label={article.title}
+                className="cc-card"
                 style={{
-                  ...cardStyle,
-                  boxShadow: "0 2px 18px 0 #0005, 0 2px 29px 0 #ff00002c"
+                  background: "var(--news-card-bg)",
                 }}
-                className="news-card"
               >
                 <header>
                   <a
@@ -219,9 +211,13 @@ function NewsPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
-                      ...cardTitleStyle,
+                      color: "var(--accent)",
+                      fontSize: "1.16em",
+                      fontWeight: 700,
+                      margin: 0,
                       display: "block",
-                      textDecoration: "none"
+                      textDecoration: "none",
+                      textShadow: "0 2px 8px #0006"
                     }}
                     tabIndex={0}
                   >
@@ -231,7 +227,10 @@ function NewsPage() {
                     </span>
                   </a>
                 </header>
-                <div style={cardDescStyle}>
+                <div style={{
+                  color: "var(--text-secondary)",
+                  fontSize: "1.06em"
+                }}>
                   {article.description
                     ? article.description
                     : article.content
@@ -240,7 +239,7 @@ function NewsPage() {
                   }
                 </div>
                 <footer style={{ marginTop: 3, display: "flex", alignItems: "center", gap: 9, flexWrap: "wrap" }}>
-                  <span style={metaStyle}>
+                  <span className="cc-card-meta">
                     {article.source?.name || article.source || "News"}
                   </span>
                   <span style={{ fontSize: 13, color: "var(--text-secondary)" }}>

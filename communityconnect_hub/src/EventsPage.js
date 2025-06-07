@@ -385,10 +385,10 @@ function EventsPage({ events = [], user }) {
     );
   }
 
-  // Render the list of events. Use localEvents to reflect session additions.
+  // Render the list of events using the modern grid/card system
   return (
-    <section>
-      <h2 style={{ color: "var(--accent)" }}>
+    <section className="cc-unified-section" aria-label="Chennai Events" style={{maxWidth: 980, marginLeft: "auto", marginRight: "auto"}}>
+      <h2 style={{ color: "var(--accent)", fontWeight: 800, fontSize: "2rem", marginBottom: 14 }}>
         Chennai Events <span role="img" aria-label="Chennai">🛕</span>
       </h2>
 
@@ -396,25 +396,25 @@ function EventsPage({ events = [], user }) {
       {user && renderEventForm()}
 
       {localEvents && localEvents.length ? (
-        <ul style={{ padding: 0, margin: 0, listStyle: "none" }}>
+        <div className="cc-card-grid" style={{gap: "20px 16px", marginTop: 8}}>
           {localEvents.map((ev, idx) => (
-            <li
+            <div
               key={idx}
+              className="cc-card"
               style={{
-                marginBottom: 18,
                 background: "#181f25",
-                borderRadius: 9,
-                border: "1.2px solid var(--border-color)",
-                boxShadow: "0 1px 7px 0 #0002",
-                padding: "13px 14px"
+                minWidth: 210,
+                maxWidth: 340,
+                flex: "1 1 220px",
+                color: "var(--accent)"
               }}
               tabIndex={0}
               aria-label={`Event: ${ev.name} on ${ev.date} at ${ev.location}`}
             >
-              <div style={{ fontWeight: 600, fontSize: "1.12em", color: "var(--accent)", marginBottom: 2 }}>
+              <div className="cc-card-title" style={{color: "var(--accent)", marginBottom: 2}}>
                 {ev.name}
               </div>
-              <div style={{ fontSize: ".98em", color: "var(--secondary)", fontWeight: 500, letterSpacing: 0.2 }}>
+              <div className="cc-card-meta" style={{color: "var(--secondary)", fontSize: ".98em"}}>
                 {ev.date} &mdash; {ev.time}
               </div>
               <div style={{ fontSize: ".97em", marginTop: 2, color: "#fff9" }}>
@@ -425,9 +425,9 @@ function EventsPage({ events = [], user }) {
                   {ev.description}
                 </div>
               )}
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       ) : (
         <div style={{ color: "var(--accent)" }}>Loading events...</div>
       )}

@@ -26,18 +26,19 @@ function FeedbackPage({ feedback, setFeedback }) {
   }
   return (
     <section
-      className="feedback-section"
+      className="cc-unified-section"
       id="feedback"
       style={{
         marginTop: 42,
-        background: "#121212",
-        padding: "24px 14px",
-        borderRadius: 10,
-        maxWidth: 420
+        maxWidth: 420,
+        marginLeft: "auto",
+        marginRight: "auto",
       }}
     >
-      <h2 style={{ color: "var(--accent)" }}>Send Feedback or Request a Feature</h2>
-      <form onSubmit={handleFeedback} aria-label="Feedback Form">
+      <h2 style={{ color: "var(--accent)", fontWeight: 800, fontSize: "1.5rem" }}>
+        Send Feedback or Request a Feature
+      </h2>
+      <form className="cc-card" onSubmit={handleFeedback} aria-label="Feedback Form" style={{background:"#121212", maxWidth:410}}>
         <textarea
           name="feedback"
           value={feedback.message}
@@ -66,22 +67,22 @@ function FeedbackPage({ feedback, setFeedback }) {
         >
           Submit
         </button>
+        {feedback.submitted && (
+          <div
+            style={{
+              color: "var(--accent)",
+              marginTop: 12,
+              background: "#163216",
+              borderRadius: 7,
+              padding: "8px 12px",
+              border: "1px solid #33FF33",
+              fontSize: 16
+            }}
+          >
+            Thank you for your feedback!
+          </div>
+        )}
       </form>
-      {feedback.submitted && (
-        <div
-          style={{
-            color: "var(--accent)",
-            marginTop: 12,
-            background: "#163216",
-            borderRadius: 7,
-            padding: "8px 12px",
-            border: "1px solid #33FF33",
-            fontSize: 16
-          }}
-        >
-          Thank you for your feedback!
-        </div>
-      )}
     </section>
   );
 }

@@ -179,19 +179,15 @@ function ResourcesPage({ searchQuery, setSearchQuery }) {
   function ResourceCard({ resource }) {
     return (
       <div
+        className="cc-card resources-card"
+        tabIndex={0}
         style={{
-          background: "#212226",
-          border: "1.5px solid var(--border-color)",
           borderLeft: "4px solid var(--secondary)",
-          borderRadius: 9,
-          padding: "14px 16px 13px 20px",
           minWidth: 210,
           maxWidth: 305,
-          marginBottom: "auto",
+          background: "#212226",
           color: "var(--accent)",
         }}
-        className="resources-card"
-        tabIndex={0}
         aria-label={`${resource.name} (${resource.contact})`}
       >
         <div style={{ fontWeight: 700, fontSize: "1.07em", color: "var(--secondary)", marginBottom: 1 }}>
@@ -214,7 +210,7 @@ function ResourcesPage({ searchQuery, setSearchQuery }) {
   }
 
   return (
-    <section className="resources-section" id="resources" style={{marginBottom: 24}}>
+    <section className="cc-unified-section" id="resources" style={{marginBottom: 24}}>
       <div
         className="centered-resource-description"
         style={{
@@ -328,10 +324,8 @@ function ResourcesPage({ searchQuery, setSearchQuery }) {
               {section.description}
             </div>
             <div
+              className="cc-card-grid"
               style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: 13,
                 marginBottom: 0,
                 marginTop: 5,
               }}
