@@ -127,6 +127,7 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
+  text-align: center;
 }
 .centered-resource-description .description {
   text-align: center;

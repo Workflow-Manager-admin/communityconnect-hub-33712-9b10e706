@@ -200,18 +200,6 @@ function ResourcesPage({ searchQuery, setSearchQuery }) {
 
   return (
     <section className="resources-section" id="resources" style={{marginBottom: 24}}>
-      <h2
-        style={{
-          margin: "32px 0 8px 0",
-          color: "var(--accent)",
-          fontWeight: 800,
-          fontSize: "2.3rem",
-          display: "flex",
-          alignItems: "center",
-          gap: 14
-        }}>
-        Community Resources <span role="img" aria-label="Support" style={{fontSize: "1.5em"}}>🌆</span>
-      </h2>
       <div
         className="centered-resource-description"
         style={{
@@ -224,6 +212,21 @@ function ResourcesPage({ searchQuery, setSearchQuery }) {
           margin: "0 auto 20px auto",
         }}
       >
+        <h2
+          style={{
+            margin: "32px 0 8px 0",
+            color: "var(--accent)",
+            fontWeight: 800,
+            fontSize: "2.3rem",
+            textAlign: "center",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 14,
+            width: "100%",
+          }}>
+          Community Resources <span role="img" aria-label="Support" style={{fontSize: "1.5em"}}>🌆</span>
+        </h2>
         <p
           className="description"
           style={{
