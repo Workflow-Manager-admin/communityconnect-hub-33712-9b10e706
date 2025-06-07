@@ -87,38 +87,42 @@
   flex-direction: column;
 }
 .feature-card-title {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: 1.37rem;
-  font-weight: 700;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.32rem;
+  font-weight: 750;
   color: inherit;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.013em;
   margin: 0 0 2px 0;
-  line-height: 1.18;
+  line-height: 1.17;
 }
+
 .feature-card-category {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.84rem;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.82rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: .048em;
-  opacity: 0.91;
+  letter-spacing: .057em;
+  line-height: 1.22;
+  opacity: 0.92;
   margin-bottom: 4px;
   color: #e6e8ee;
 }
+
 .feature-card-desc {
-  font-size: 1.00rem;
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.97rem;
   color: inherit;
-  font-weight: 400;
-  margin: 0 0 15px 0;
-  line-height: 1.44;
-  opacity: 0.89;
+  font-weight: 410;
+  margin: 0 0 14px 0;
+  line-height: 1.49;
+  letter-spacing: 0.01em;
+  opacity: 0.93;
 }
 
 /* "More" link styles */
 .feature-card-link {
-  font-size: 0.98rem;
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.95rem;
   color: #67DEF6;
   font-weight: 700;
   text-decoration: underline dotted transparent;
@@ -133,6 +137,8 @@
   z-index: 2;
   align-self: flex-start;
   transition: color 0.14s, background 0.13s, text-decoration 0.15s;
+  letter-spacing: 0.01em;
+  line-height: 1.23;
 }
 .feature-card-link:focus,
 .feature-card-link:focus-visible {
