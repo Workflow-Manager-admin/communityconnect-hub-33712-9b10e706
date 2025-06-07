@@ -27,24 +27,6 @@ import FeedbackPage from "./FeedbackPage";
 import HomePage from "./HomePage";
 import Footer from "./Footer";
 
-/*
-  === DESIGN AUDIT: Main App Container ===
-  ... (header and imports remain unchanged)
-*/
-
-import React, { useState, useEffect } from "react";
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Link, Navigate, useLocation } from "react-router-dom";
-
-import NewsPage from "./NewsPage";
-import WeatherPage from "./WeatherPage";
-import EventsPage from "./EventsPage";
-import ResourcesPage from "./ResourcesPage";
-import RegisterPage from "./RegisterPage";
-import FeedbackPage from "./FeedbackPage";
-import HomePage from "./HomePage";
-import Footer from "./Footer";
-
 // Styling helpers (inline, to keep single-file for App.js)
 const navStyle = {
   color: "var(--accent)",
@@ -219,6 +201,7 @@ function AppContainer() {
     const NAV_LINKS = [
       { to: "/", label: "Home", match: ["/"] },
       { to: "/news", label: "News", match: ["/news"] },
+      { to: "/weather", label: "Weather", match: ["/weather"] },
       { to: "/resources", label: "Resources", match: ["/resources"] },
       { to: "/events", label: "Events", match: ["/events"] },
       { to: "/register", label: user ? "Account" : "Register", match: ["/register"] },
@@ -473,6 +456,12 @@ function AppContainer() {
   }
 
   // ========== THEME LOCK: Apply on navigation and initial load ==========
+  // PUBLIC_INTERFACE
+  /**
+   * MainContainer - Core container for CommunityConnect Hub app
+   * Handles layout, theme, navbar, routing, shared state, and footer.
+   * Integrates news, weather, events, resources, registration, and feedback.
+   */
   function MainContainer() {
     const location = useLocation();
 
