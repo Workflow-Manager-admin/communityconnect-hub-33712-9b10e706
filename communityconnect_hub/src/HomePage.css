@@ -87,44 +87,44 @@
   flex-direction: column;
 }
 .feature-card-title {
-  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-  font-size: 1.32rem;
-  font-weight: 750;
+  font-family: 'Helvetica Neue', 'Inter', Arial, sans-serif;
+  font-size: 1.38rem;
+  font-weight: 799;
   color: inherit;
-  letter-spacing: 0.013em;
+  letter-spacing: 0.011em;
   margin: 0 0 2px 0;
-  line-height: 1.17;
+  line-height: 1.15;
 }
 
 .feature-card-category {
-  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-  font-size: 0.82rem;
-  font-weight: 600;
+  font-family: 'Helvetica Neue', 'Inter', Arial, sans-serif;
+  font-size: 0.84rem;
+  font-weight: 640;
   text-transform: uppercase;
-  letter-spacing: .057em;
-  line-height: 1.22;
-  opacity: 0.92;
+  letter-spacing: .065em;
+  line-height: 1.2;
+  opacity: 0.93;
   margin-bottom: 4px;
   color: #e6e8ee;
 }
 
 .feature-card-desc {
-  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-  font-size: 0.97rem;
+  font-family: 'Helvetica Neue', 'Inter', Arial, sans-serif;
+  font-size: 1.01rem;
   color: inherit;
-  font-weight: 410;
-  margin: 0 0 14px 0;
-  line-height: 1.49;
-  letter-spacing: 0.01em;
-  opacity: 0.93;
+  font-weight: 415;
+  margin: 0 0 13px 0;
+  line-height: 1.57;
+  letter-spacing: 0.009em;
+  opacity: 0.94;
 }
 
 /* "More" link styles */
 .feature-card-link {
-  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-  font-size: 0.95rem;
+  font-family: 'Helvetica Neue', 'Inter', Arial, sans-serif;
+  font-size: 0.97rem;
   color: #67DEF6;
-  font-weight: 700;
+  font-weight: 755;
   text-decoration: underline dotted transparent;
   background: none;
   outline: none;
@@ -142,10 +142,11 @@
 }
 .feature-card-link:focus,
 .feature-card-link:focus-visible {
-  outline: 2px solid #67DEF6;
+  outline: 2.1px solid #67DEF6;
   text-decoration: underline;
   color: #67DEF6;
   background: rgba(103,222,246,0.13);
+  font-weight: 800;
 }
 .feature-card-link:hover, .feature-card-link:active {
   text-decoration: underline;

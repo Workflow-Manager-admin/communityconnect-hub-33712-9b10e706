@@ -6,11 +6,12 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Inter', 'Helvetica Neue', Arial, 'Segoe UI', 'Roboto', sans-serif;
-  font-size: 1.01rem;
-  line-height: 1.62;
-  letter-spacing: 0.005em;
+  font-family: 'Helvetica Neue', 'Inter', Arial, 'Segoe UI', 'Roboto', sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
   font-variation-settings: "wght" 430;
+  font-weight: 410;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -20,4 +21,5 @@ code {
     monospace;
   font-size: 0.98rem;
   font-variant-ligatures: none;
+  letter-spacing: .028em;
 }
