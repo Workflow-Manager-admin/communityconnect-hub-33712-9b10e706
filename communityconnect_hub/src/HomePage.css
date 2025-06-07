@@ -136,22 +136,56 @@
   position: relative;
   z-index: 2;
   align-self: flex-start;
-  transition: color 0.14s, background 0.13s, text-decoration 0.15s;
+  transition:
+    color 0.16s cubic-bezier(.47,.14,.63,.89),
+    background 0.15s cubic-bezier(.44,.12,.49,1),
+    box-shadow 0.16s cubic-bezier(.51,.17,.48,.87),
+    text-decoration-color 0.15s,
+    outline-color 0.14s;
   letter-spacing: 0.01em;
   line-height: 1.23;
 }
 .feature-card-link:focus,
 .feature-card-link:focus-visible {
-  outline: 2.1px solid #67DEF6;
+  outline: 2.2px solid #67DEF6;
+  outline-offset: 2.2px;
   text-decoration: underline;
   color: #67DEF6;
   background: rgba(103,222,246,0.13);
   font-weight: 800;
+  box-shadow: 0 0 0 5px #67DEF633;
+  z-index: 3;
+  transition: outline-color 0.17s, background 0.16s, box-shadow 0.15s;
 }
 .feature-card-link:hover, .feature-card-link:active {
   text-decoration: underline;
   color: #60E1E0;
-  background: rgba(103,222,246,0.13);
+  background: rgba(103,222,246,0.15);
+}
+
+/* Make outer feature-card more vivid on focus, for keyboard navigation (tab order) */
+.feature-card:focus-within,
+.feature-card:focus-visible {
+  outline: 2.7px solid #67DEF6 !important;
+  box-shadow: 0 0 0 10px #67DEF61a, 0 4px 28px 0 var(--accent), 0 3px 14px 0 #60e1e033 !important;
+  border: 1.7px solid #67DEF6 !important;
+  z-index: 10;
+  transition: outline-color 0.20s, box-shadow 0.21s, border 0.17s;
+}
+/* Animate outer card on hover for smooth 'lift' effect */
+.feature-card:hover,
+.feature-card:active {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 46px 0 #000d, 0 3px 22px 0 #67DEF657, 0 0 0 10px #67DEF619;
+  border: 1.95px solid #67DEF6;
+}
+
+/* For full accessibility, visible tab/focus must never be suppressed for any button/link/card. */
+
+/* Inputs and controls in feature cards (if added): consistent focus style */
+.feature-card input:focus, .feature-card textarea:focus, .feature-card select:focus {
+  border-color: #67DEF6;
+  box-shadow: 0 0 0 4px #67DEF62a;
 }
 
 /* Contrast for 'about'/'resources' on pale backgrounds */
