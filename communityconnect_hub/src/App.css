@@ -1,6 +1,10 @@
 :root {
-  --base-light: #00ffff;
-  --base-dark: #00008b;
+  /* Core palette harmonized from design notes and audit */
+  --base-dark: #20272D;
+  --base-light: #67DEF6;
+  --primary: #000000;
+  --secondary: #F04C40;
+  --accent: #67DEF6;
   --container-bg: #20272D;
   --card-bg: #23262D;
   --card-shadow: 0 3px 16px 0 rgba(0,0,0,0.13), 0 2px 9px 0 #14161822;
@@ -8,10 +12,10 @@
   --card-padding: 22px 22px 18px 22px;
   --card-gap: 20px;
   --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
+  --text-secondary: #B9BEC9;
+  --border-color: rgba(255, 255, 255, 0.10);
   --news-card-bg: linear-gradient(103deg, #191d21 80%, #292626 100%);
-  --news-card-hover-shadow: 0 7px 38px 0 #ff00003a, 0 2px 32px 0 #ff000057;
+  --news-card-hover-shadow: 0 7px 38px 0 #F04C403a, 0 2px 32px 0 #67DEF657;
 }
 
 body {
@@ -185,7 +189,11 @@ body {
   color: var(--text-color);
   margin-bottom: 0;
   position: relative;
-  transition: box-shadow 0.18s, transform 0.16s, border 0.18s;
+  transition: 
+    box-shadow 0.18s, 
+    transform 0.16s, 
+    border 0.18s,
+    outline 0.14s;
   border: 1.3px solid var(--border-color);
   outline: none;
   display: flex;
@@ -193,14 +201,14 @@ body {
 }
 .cc-card:focus-within, .cc-card:focus-visible,
 .resources-card:focus-within, .resources-card:focus-visible {
-  outline: 2.5px solid #67DEF6;
-  box-shadow: 0 4px 28px 0 #67DEF6b5, 0 3px 14px 0 #60e1e022;
+  outline: 2.5px solid var(--accent);
+  box-shadow: 0 4px 28px 0 var(--accent), 0 3px 14px 0 #60e1e033;
   z-index: 2;
 }
 .cc-card:hover, .cc-card:active, .resources-card:hover, .resources-card:active {
   transform: translateY(-2px) scale(1.017);
-  box-shadow: 0 15px 30px 0 #000c, 0 2px 26px 0 #67DEF644;
-  border: 1.7px solid #67DEF6;
+  box-shadow: 0 15px 30px 0 #000c, 0 2px 26px 0 var(--accent);
+  border: 1.7px solid var(--accent);
 }
 
 .cc-card-title {

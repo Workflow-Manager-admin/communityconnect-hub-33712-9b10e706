@@ -10,9 +10,9 @@
 .weather-widget {
   background: linear-gradient(122deg, #181d25 92%, #26272b 100%);
   border-radius: 15px;
-  border: 1.6px solid var(--border-color);
+  border: 1.7px solid var(--accent);
   color: var(--text-color);
-  box-shadow: 0 3px 22px 0 #0007;
+  box-shadow: 0 3px 22px 0 #0009, 0 2px 8px 0 var(--accent);
   min-width: 250px;
   max-width: 320px;
   margin: 0 auto;

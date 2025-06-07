@@ -36,28 +36,28 @@
   align-items: flex-start;
   justify-content: flex-start;
   border-radius: 12px;
-  box-shadow: 0 3px 16px 0 rgba(0,0,0,0.13), 0 2px 9px 0 #14161822;
+  box-shadow: var(--card-shadow);
   padding: 26px 22px 21px 22px;
   min-height: 265px;
   min-width: 0;
   position: relative;
   outline: none;
   z-index: 1;
-  background: #23262D;
+  background: var(--card-bg);
   transition: box-shadow 0.19s, transform 0.14s, border 0.15s;
-  border: 1.5px solid rgba(46,54,62, 0.16);
+  border: 1.5px solid var(--border-color);
 }
 .feature-card:focus-within,
 .feature-card:focus-visible {
-  outline: 2.5px solid #67DEF6;
-  box-shadow: 0 4px 28px 0 #67DEF6b5, 0 3px 14px 0 #60e1e022;
+  outline: 2.5px solid var(--accent);
+  box-shadow: 0 4px 28px 0 var(--accent), 0 3px 14px 0 #60e1e033;
   z-index: 2;
 }
 .feature-card:hover,
 .feature-card:active {
   transform: translateY(-3px) scale(1.018);
-  box-shadow: 0 15px 36px 0 #000c, 0 2px 30px 0 #67DEF644;
-  border: 1.8px solid #67DEF6;
+  box-shadow: 0 15px 36px 0 #000c, 0 2px 30px 0 var(--accent);
+  border: 1.8px solid var(--accent);
 }
 
 /* ICON WRAPPER - more separation, polish, contrast */
