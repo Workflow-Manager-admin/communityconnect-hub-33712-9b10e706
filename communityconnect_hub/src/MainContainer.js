@@ -14,8 +14,8 @@ import { Link, Routes, Route, Navigate, Outlet } from "react-router-dom";
  * Note: Layout matches spec: navbar, accessible skip link, card dashboard, search bar, key sections.
  */
 function MainContainer() {
-  // Theme CSS vars
-  const themeVars = {
+  // Default Theme CSS vars
+  const defaultThemeVars = {
     "--primary": "#000000",
     "--secondary": "#ff0000",
     "--accent": "#ffffff",
@@ -24,6 +24,35 @@ function MainContainer() {
     "--card-bg": "#23262D",
     "--card-radius": "12px",
     "--card-shadow": "0 3px 16px 0 rgba(0,0,0,0.13), 0 2px 9px 0 #14161822"
+  };
+
+  // Map nav item to theme colors
+  const NAV_COLORS = {
+    Home:   { "--primary": "#23262D", "--secondary": "#ff0000", "--accent": "#67DEF6" },
+    News:   { "--primary": "#2440FA", "--secondary": "#4482F0", "--accent": "#B8DBFF" },      // blue
+    Weather: { "--primary": "#67DEF6", "--secondary": "#6976F6", "--accent": "#fff" },        // light blue/cyan
+    Resources: { "--primary": "#00C46F", "--secondary": "#3BB273", "--accent": "#fff" },      // green
+    Events: { "--primary": "#F69B32", "--secondary": "#F04C40", "--accent": "#fff9ce" },      // orange
+    Register: { "--primary": "#7F3AED", "--secondary": "#B15DF0", "--accent": "#fff" },       // purple (Account/Register)
+    Feedback: { "--primary": "#F04C40", "--secondary": "#B61F6A", "--accent": "#fff" }        // red/pink for feedback
+  };
+
+  // State for theming
+  const [themeVars, setThemeVars] = React.useState(defaultThemeVars);
+
+  // Handle hover for nav
+  const handleNavHover = (navLabel) => {
+    if (NAV_COLORS[navLabel]) {
+      setThemeVars({
+        ...defaultThemeVars,
+        ...NAV_COLORS[navLabel]
+      });
+    }
+  };
+
+  // Reset theme to default when not hovering
+  const handleNavUnhover = () => {
+    setThemeVars(defaultThemeVars);
   };
 
   // Placeholder for dashboard widgets (replace with actual API widgets)
@@ -145,7 +174,7 @@ function MainContainer() {
     );
   }
 
-  // Main Navigation
+  // Main Navigation with theme color change on hover
   function NavBar() {
     const links = [
       { path: "/", label: "Home" },
@@ -156,20 +185,33 @@ function MainContainer() {
       { path: "/register", label: "Register" },
       { path: "/feedback", label: "Feedback" }
     ];
+
+    // Determine active route for highlight (supports feedback for color as well)
+    const pathname = window.location.pathname;
+    function isActive(route) {
+      if (route === "/") return pathname === "/";
+      return pathname.startsWith(route) && route !== "/";
+    }
+
     return (
-      <nav className="navbar" role="navigation" aria-label="Primary navigation" style={{
-        background: "linear-gradient(90deg,#000 80%, var(--secondary) 135%)",
-        borderBottom: "1.25px solid var(--secondary)",
-        minHeight: 60,
-        padding: "0 0",
-        display: "flex",
-        alignItems: "center",
-        position: "fixed",
-        top: 0,
-        width: "100%",
-        zIndex: 10
-      }}>
-        <div className="container" style={{ width: "100%", display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <nav
+        className="navbar"
+        role="navigation"
+        aria-label="Primary navigation"
+        style={{
+          background: "linear-gradient(90deg,#000 80%, var(--secondary) 135%)",
+          borderBottom: "1.25px solid var(--secondary)",
+          minHeight: 60,
+          padding: "0 0",
+          display: "flex",
+          alignItems: "center",
+          position: "fixed",
+          top: 0,
+          width: "100%",
+          zIndex: 10,
+        }}
+      >
+        <div className="container" style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <Link to="/" className="logo" style={{
             color: "var(--accent)",
             fontWeight: 700,
@@ -183,22 +225,38 @@ function MainContainer() {
             CommunityConnect Hub
           </Link>
           <div className="navbar-links" style={{ display: "flex", gap: "22px" }}>
-            {links.map(link =>
+            {links.map(link => (
               <Link
                 to={link.path}
                 key={link.path}
+                onMouseEnter={() => handleNavHover(link.label)}
+                onFocus={() => handleNavHover(link.label)}
+                onMouseLeave={handleNavUnhover}
+                onBlur={handleNavUnhover}
                 style={{
-                  color: "var(--accent)",
+                  color: isActive(link.path) ? "var(--secondary)" : "var(--accent)",
                   textDecoration: "none",
-                  fontWeight: 600,
+                  fontWeight: isActive(link.path) ? 800 : 600,
                   fontSize: ".97rem",
-                  padding: "4px 10px"
+                  padding: "4px 10px",
+                  borderBottom: isActive(link.path)
+                    ? "2.3px solid var(--secondary)"
+                    : "2.3px solid transparent",
+                  background: isActive(link.path)
+                    ? "rgba(255,255,255,0.07)"
+                    : undefined,
+                  borderRadius: 6,
+                  transition: "background 0.17s, color 0.14s, border 0.18s",
+                  position: "relative",
+                  outline: "none",
+                  cursor: "pointer",
                 }}
                 tabIndex={0}
+                aria-current={isActive(link.path) ? "page" : undefined}
               >
                 {link.label}
               </Link>
-            )}
+            ))}
           </div>
         </div>
       </nav>
