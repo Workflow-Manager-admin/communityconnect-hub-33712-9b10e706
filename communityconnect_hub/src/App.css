@@ -120,6 +120,26 @@ body {
   margin-bottom: 16px;
 }
 
+/* Centering for resource intro paragraph on the resources page */
+.centered-resource-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.centered-resource-description .description {
+  text-align: center;
+  margin: 0 auto 0 auto;
+  background: rgba(24,24,28,0.92);
+  border-radius: 12px;
+  padding: 20px 16px 15px 16px;
+  box-shadow: 0 2px 16px #0002;
+  font-size: 1.15rem;
+  max-width: 730px;
+  color: var(--text-secondary);
+}
+
 /* Enhanced Widget & Card Styles */
 .widget {
   background: #14191e;

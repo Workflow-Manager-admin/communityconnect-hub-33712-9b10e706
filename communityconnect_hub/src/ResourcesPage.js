@@ -212,10 +212,43 @@ function ResourcesPage({ searchQuery, setSearchQuery }) {
         }}>
         Community Resources <span role="img" aria-label="Support" style={{fontSize: "1.5em"}}>🌆</span>
       </h2>
-      <p className="description" style={{ color: "var(--text-secondary)", margin: 0, marginBottom: 18 }}>
-        Curated directory of public and volunteer resources for Chennai. <br />
-        <span style={{fontSize:".97em"}}>For emergencies dial 100, 101, or 108. Data below is for quick access and not exhaustive. <b>If you’re missing a resource, <a href="/feedback" style={{color: "var(--secondary)"}}>let us know</a>.</b></span>
-      </p>
+      <div
+        className="centered-resource-description"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+          width: "100%",
+          minHeight: 0,
+          margin: "0 auto 20px auto",
+        }}
+      >
+        <p
+          className="description"
+          style={{
+            color: "var(--text-secondary)",
+            margin: 0,
+            marginBottom: 0,
+            textAlign: "center",
+            background: "rgba(24,24,28,0.9)",
+            borderRadius: "12px",
+            padding: "20px 16px 15px 16px",
+            maxWidth: 730,
+            fontSize: "1.15rem",
+            boxShadow: "0 2px 18px #0002",
+          }}
+        >
+          Curated directory of public and volunteer resources for Chennai.<br />
+          <span style={{ fontSize: ".97em" }}>
+            For emergencies dial 100, 101, or 108. Data below is for quick access and not exhaustive.
+            <b>
+              If you’re missing a resource,
+              <a href="/feedback" style={{ color: "var(--secondary)", textDecoration: "underline" }}> let us know</a>.
+            </b>
+          </span>
+        </p>
+      </div>
       {/* Search bar */}
       <form
         autoComplete="off"
