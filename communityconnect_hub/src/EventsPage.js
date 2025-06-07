@@ -451,7 +451,6 @@ function EventsPage({ events = [] }) {
       <h2 style={{ color: "var(--accent)", fontWeight: 800, fontSize: "2rem", marginBottom: 14 }}>
         Chennai Events <span role="img" aria-label="Chennai">🛕</span>
       </h2>
-      {renderEventForm()}
       {localEvents && localEvents.length ? (
         <div className="cc-card-grid" style={{ gap: "20px 16px", marginTop: 8 }}>
           {localEvents.map((ev, idx) => (
@@ -493,6 +492,7 @@ function EventsPage({ events = [] }) {
       ) : (
         <div style={{ color: "var(--accent)" }}>Loading events...</div>
       )}
+      {renderEventForm()}
     </section>
   );
 }
