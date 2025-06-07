@@ -27,8 +27,48 @@ import FeedbackPage from "./FeedbackPage";
 import HomePage from "./HomePage";
 import Footer from "./Footer";
 
+/*
+  === DESIGN AUDIT: Main App Container ===
+  ... (header and imports remain unchanged)
+*/
+
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route, Link, Navigate, useLocation } from "react-router-dom";
+
+import NewsPage from "./NewsPage";
+import WeatherPage from "./WeatherPage";
+import EventsPage from "./EventsPage";
+import ResourcesPage from "./ResourcesPage";
+import RegisterPage from "./RegisterPage";
+import FeedbackPage from "./FeedbackPage";
+import HomePage from "./HomePage";
+import Footer from "./Footer";
+
+// Styling helpers (inline, to keep single-file for App.js)
+const navStyle = {
+  color: "var(--accent)",
+  fontWeight: 500,
+  textDecoration: "none",
+  outline: "none",
+  padding: "3px 8px",
+  borderRadius: 6,
+  fontSize: ".97em",
+  transition: "background 0.15s",
+};
+
+const quickLinkStyle = {
+  background: "linear-gradient(90deg, #232323 70%, var(--secondary) 100%)",
+  color: "var(--accent)",
+  padding: "8px 18px",
+  borderRadius: 8,
+  fontWeight: 600,
+  textDecoration: "none",
+  fontSize: "1.02rem",
+};
+
 // PUBLIC_INTERFACE
-function App() {
+function AppContainer() {
   // State for widgets and forms
   const [news, setNews] = useState([]);
   const [weather, setWeather] = useState(null);
@@ -149,7 +189,6 @@ function App() {
   }, [searchQuery, resources]);
 
   // THEME COLORS - lock to RED ("#ff0000") when navigating via navbar or after any route change
-  // PUBLIC_INTERFACE
   const RED_THEME = {
     "--primary": "#000000",
     "--secondary": "#ff0000",
@@ -158,7 +197,7 @@ function App() {
     "--base-light": "#ff0000",
     "--text-color": "#ffffff",
   };
-  
+
   // Helper: update theme for <body> and :root (strongest cascade)
   function applyRedTheme() {
     if (typeof window !== "undefined") {
@@ -167,7 +206,7 @@ function App() {
     }
   }
 
-  // ========== NAVBAR ========== //
+  // ========== NAVBAR ==========
   // PUBLIC_INTERFACE
   function Navbar() {
     // State for mobile menu
@@ -501,35 +540,11 @@ function App() {
     );
   }
 
-  // Swap <App /> export to use MainContainer
-  export default function App() {
-    return (
-      <Router>
-        <MainContainer />
-      </Router>
-    );
-  }
+  return (
+    <Router>
+      <MainContainer />
+    </Router>
+  );
+}
 
-// Styling helpers (inline, to keep single-file for App.js)
-const navStyle = {
-  color: "var(--accent)",
-  fontWeight: 500,
-  textDecoration: "none",
-  outline: "none",
-  padding: "3px 8px",
-  borderRadius: 6,
-  fontSize: ".97em",
-  transition: "background 0.15s",
-};
-
-const quickLinkStyle = {
-  background: "linear-gradient(90deg, #232323 70%, var(--secondary) 100%)",
-  color: "var(--accent)",
-  padding: "8px 18px",
-  borderRadius: 8,
-  fontWeight: 600,
-  textDecoration: "none",
-  fontSize: "1.02rem",
-};
-
-export default App;
+export default AppContainer;
