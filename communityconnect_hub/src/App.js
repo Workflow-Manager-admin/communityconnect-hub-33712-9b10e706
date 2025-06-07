@@ -25,6 +25,7 @@ import ResourcesPage from "./ResourcesPage";
 import RegisterPage from "./RegisterPage";
 import FeedbackPage from "./FeedbackPage";
 import HomePage from "./HomePage";
+import Footer from "./Footer";
 
 // PUBLIC_INTERFACE
 function App() {
@@ -480,19 +481,7 @@ function App() {
           </div>
         </main>
         {/* Accessible footer */}
-        <footer
-          style={{
-            background: "var(--primary)",
-            color: "var(--accent)",
-            fontSize: 13,
-            textAlign: "center",
-            borderTop: "1px solid var(--border-color)",
-            padding: "12px 0",
-            width: "100%",
-          }}
-        >
-          &copy; {new Date().getFullYear()} CommunityConnect Hub &mdash; Built for the Community.
-        </footer>
+        <Footer />
       </Router>
     </div>
   );
