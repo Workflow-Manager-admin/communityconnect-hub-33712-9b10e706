@@ -85,15 +85,30 @@ function HomePage() {
       <h1 className="screen-reader-only">Welcome to CommunityConnect Hub</h1>
       <section className="display-grid" aria-label="Feature Cards">
         {features.map((f) => (
-          <section
+          <Link
+            to={f.to}
             key={f.id}
             className="feature-card"
             aria-label={f.ariaLabel}
             style={{
               background: f.bg,
               color: f.textColor,
+              textDecoration: "none",
+              outline: "none",
+              cursor: "pointer",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              justifyContent: "flex-start",
             }}
-            tabIndex={-1}
+            tabIndex={0}
+            role="link"
+            onKeyDown={e => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                e.target.click();
+              }
+            }}
           >
             <div
               className="feature-card-icon"
@@ -121,16 +136,19 @@ function HomePage() {
               <div className="feature-card-category" aria-hidden="true">{f.category}</div>
               <p className="feature-card-desc">{f.desc}</p>
             </div>
-            <Link
-              to={f.to}
+            <div
               className="feature-card-link"
-              tabIndex={0}
-              aria-label={`Go to ${f.title} page`}
+              tabIndex={-1}
+              aria-hidden="true"
+              style={{
+                pointerEvents: "none",
+                color: "#67DEF6",
+                fontWeight: 700
+              }}
             >
-              <span aria-hidden="true">More</span>
-              <span className="screen-reader-only">Go to {f.title} page</span>
-            </Link>
-          </section>
+              More
+            </div>
+          </Link>
         ))}
       </section>
     </main>
