@@ -19,7 +19,7 @@ function HomePage() {
       category: "Updates",
       desc: "Latest city headlines and updates relevant to the community. Stay informed.",
       to: "/news",
-      bg: "#20272D",
+      bg: "#23262D",
       textColor: "#fff",
       ariaLabel: "Latest News"
     },
@@ -91,16 +91,34 @@ function HomePage() {
             aria-label={f.ariaLabel}
             style={{
               background: f.bg,
-              color: f.textColor
+              color: f.textColor,
             }}
             tabIndex={-1}
           >
-            <div className="feature-card-icon" aria-hidden="true">
+            <div
+              className="feature-card-icon"
+              aria-hidden="true"
+              style={{
+                borderRadius: "50%",
+                background:
+                  f.id === "resources"
+                    ? "#fff"
+                    : f.id === "about"
+                    ? "#fff"
+                    : "rgba(28,28,36,0.11)",
+                boxShadow: f.id === "about" || f.id === "resources"
+                  ? "0 2px 9px 0 #ddd9"
+                  : "0 2px 12px 0 #19191622",
+                padding: 4,
+                marginBottom: 6,
+                transition: "background 0.18s"
+              }}
+            >
               {React.cloneElement(f.icon, { color: f.textColor })}
             </div>
-            <div className="feature-card-content">
+            <div className="feature-card-content" style={{ width: "100%", marginTop: 4 }}>
               <h2 className="feature-card-title">{f.title}</h2>
-              <div className="feature-card-category">{f.category}</div>
+              <div className="feature-card-category" aria-hidden="true">{f.category}</div>
               <p className="feature-card-desc">{f.desc}</p>
             </div>
             <Link
@@ -109,7 +127,8 @@ function HomePage() {
               tabIndex={0}
               aria-label={`Go to ${f.title} page`}
             >
-              More
+              <span aria-hidden="true">More</span>
+              <span className="screen-reader-only">Go to {f.title} page</span>
             </Link>
           </section>
         ))}
@@ -118,10 +137,10 @@ function HomePage() {
   );
 }
 
-// SVG ICONS (visually bold, accessible, deterministic)
+// SVG ICONS (modern, performance-optimized, accessible)
 function NewspaperIcon({ color = "#fff" }) {
   return (
-    <svg width="44" height="44" viewBox="0 0 48 48" fill="none" role="img" aria-label="News Icon">
+    <svg width="44" height="44" viewBox="0 0 48 48" fill="none" aria-label="News Icon" role="img" focusable="false">
       <rect x="6" y="14" width="36" height="22" rx="5" fill={color} opacity="0.13"/>
       <rect x="8" y="16" width="32" height="18" rx="3" stroke={color} strokeWidth="2" fill="none"/>
       <rect x="12" y="21" width="20" height="4" rx="2" fill={color} opacity="0.7" />
@@ -132,7 +151,7 @@ function NewspaperIcon({ color = "#fff" }) {
 }
 function ResourcesIcon({ color = "#20272D" }) {
   return (
-    <svg width="44" height="44" viewBox="0 0 48 48" fill="none" role="img" aria-label="Resources Icon">
+    <svg width="44" height="44" viewBox="0 0 48 48" fill="none" aria-label="Resources Icon" role="img" focusable="false">
       <rect x="11" y="24" width="26" height="10" rx="5" stroke={color} strokeWidth="2.2" fill="none"/>
       <rect x="11" y="14" width="26" height="8" rx="4" stroke={color} strokeWidth="2.2" fill="none"/>
       <circle cx="16" cy="28.5" r="2.5" fill={color} />
@@ -143,7 +162,7 @@ function ResourcesIcon({ color = "#20272D" }) {
 }
 function EventsIcon({ color = "#20272D" }) {
   return (
-    <svg width="43" height="43" viewBox="0 0 48 48" fill="none" role="img" aria-label="Events Icon">
+    <svg width="43" height="43" viewBox="0 0 48 48" fill="none" aria-label="Events Icon" role="img" focusable="false">
       <rect x="7" y="13" width="34" height="26" rx="5" stroke={color} strokeWidth="2.2" fill="none"/>
       <rect x="11" y="13.5" width="26" height="4" rx="2" fill={color} opacity="0.28"/>
       <rect x="18" y="23" width="5" height="5" rx="2" fill={color}/>
@@ -157,7 +176,7 @@ function EventsIcon({ color = "#20272D" }) {
 }
 function UserIcon({ color = "#fff" }) {
   return (
-    <svg width="43" height="43" viewBox="0 0 48 48" fill="none" role="img" aria-label="User/Account Icon">
+    <svg width="43" height="43" viewBox="0 0 48 48" fill="none" aria-label="User/Account Icon" role="img" focusable="false">
       <circle cx="24" cy="18" r="7" stroke={color} strokeWidth="2.2" fill="none"/>
       <ellipse cx="24" cy="31.9" rx="12" ry="7.2" stroke={color} strokeWidth="2.2" fill="none"/>
     </svg>
@@ -165,7 +184,7 @@ function UserIcon({ color = "#fff" }) {
 }
 function FeedbackIcon({ color = "#fff" }) {
   return (
-    <svg width="44" height="44" viewBox="0 0 48 48" fill="none" role="img" aria-label="Feedback Icon">
+    <svg width="44" height="44" viewBox="0 0 48 48" fill="none" aria-label="Feedback Icon" role="img" focusable="false">
       <rect x="6" y="13" width="36" height="22" rx="7" stroke={color} strokeWidth="2.2" fill="none"/>
       <path d="M12 31v4c0 1.1.9 2 2 2h11l7 7v-7h2a2 2 0 0 0 2-2v-4" stroke={color} strokeWidth="2.1" fill="none"/>
       <circle cx="17" cy="24" r="2.5" fill={color} />
@@ -176,7 +195,7 @@ function FeedbackIcon({ color = "#fff" }) {
 }
 function AboutIcon({ color = "#20272D" }) {
   return (
-    <svg width="44" height="44" viewBox="0 0 48 48" fill="none" role="img" aria-label="About Icon">
+    <svg width="44" height="44" viewBox="0 0 48 48" fill="none" aria-label="About Icon" role="img" focusable="false">
       <circle cx="24" cy="24" r="18" stroke={color} strokeWidth="2.2" fill="none"/>
       <rect x="20" y="20" width="8" height="13" rx="4" fill={color} opacity="0.6"/>
       <circle cx="24" cy="15" r="2.6" fill={color}/>

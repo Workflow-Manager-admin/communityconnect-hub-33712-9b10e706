@@ -7,97 +7,117 @@
   box-sizing: border-box;
 }
 
+/* CARD GRID */
 .display-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 24px;
   margin: 0 auto;
-  max-width: 1030px;
-  padding: 36px 24px 28px 24px;
+  max-width: 1080px;
+  padding: 48px 28px 36px 28px;
 }
 @media (max-width: 960px) {
   .display-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-@media (max-width: 640px) {
+@media (max-width: 700px) {
   .display-grid {
     grid-template-columns: 1fr;
-    padding: 16px;
+    padding: 18px 4vw;
+    gap: 19px;
   }
 }
 
+/* FEATURE CARD */
 .feature-card {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   border-radius: 12px;
-  box-shadow: 0 3px 12px 0 rgba(0,0,0,0.10), 0 1.5px 10px 0 #0003;
-  padding: 22px 17px 16px 19px;
+  box-shadow: 0 3px 16px 0 rgba(0,0,0,0.13), 0 2px 9px 0 #14161822;
+  padding: 26px 22px 21px 22px;
   min-height: 265px;
   min-width: 0;
   position: relative;
-  transition: box-shadow 0.18s, transform 0.14s;
   outline: none;
   z-index: 1;
+  background: #23262D;
+  transition: box-shadow 0.19s, transform 0.14s, border 0.15s;
+  border: 1.5px solid rgba(46,54,62, 0.16);
 }
 .feature-card:focus-within,
 .feature-card:focus-visible {
   outline: 2.5px solid #67DEF6;
-  box-shadow: 0 4px 22px 0 #67DEF6AA;
+  box-shadow: 0 4px 28px 0 #67DEF6b5, 0 3px 14px 0 #60e1e022;
   z-index: 2;
 }
-
-.feature-card:hover, .feature-card:active {
-  transform: translateY(-2px) scale(1.012);
-  box-shadow: 0 11px 30px 0 #0007, 0 2px 24px 0 #60e1e07c;
+.feature-card:hover,
+.feature-card:active {
+  transform: translateY(-3px) scale(1.018);
+  box-shadow: 0 15px 36px 0 #000c, 0 2px 30px 0 #67DEF644;
+  border: 1.8px solid #67DEF6;
 }
 
+/* ICON WRAPPER - more separation, polish, contrast */
 .feature-card-icon {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 52px;
-  height: 52px;
+  width: 56px;
+  height: 56px;
   margin: 0 auto 4px auto;
-  z-index: 1;
+  box-shadow: 0 2px 9px 0 rgba(0,0,0,.07);
+  border-radius: 50%;
+  background: rgba(28,32,36,0.11);
+  transition: background 0.15s, box-shadow 0.17s;
+}
+.feature-card:hover .feature-card-icon,
+.feature-card:focus-within .feature-card-icon {
+  background: rgba(103,222,246,0.13);
+  box-shadow: 0 3px 18px 0 #67DEF633;
 }
 .feature-card-content {
   width: 100%;
-  margin-top: 8px;
-  margin-bottom: 11px;
+  margin-top: 10px;
+  margin-bottom: 14px;
+  min-height: 85px;
+  display: flex;
+  flex-direction: column;
 }
 .feature-card-title {
   font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: 1.32rem;
+  font-size: 1.37rem;
   font-weight: 700;
   color: inherit;
   letter-spacing: 0.01em;
   margin: 0 0 2px 0;
-  line-height: 1.15;
+  line-height: 1.18;
 }
 .feature-card-category {
   font-family: "Helvetica Neue", Arial, sans-serif;
   font-size: 0.84rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: .045em;
-  opacity: 0.90;
-  margin-bottom: 3px;
+  letter-spacing: .048em;
+  opacity: 0.91;
+  margin-bottom: 4px;
+  color: #e6e8ee;
 }
 .feature-card-desc {
   font-size: 1.00rem;
   font-family: "Helvetica Neue", Arial, sans-serif;
   color: inherit;
   font-weight: 400;
-  margin: 0 0 12px 0;
-  line-height: 1.38;
-  opacity: 0.90;
+  margin: 0 0 15px 0;
+  line-height: 1.44;
+  opacity: 0.89;
 }
 
+/* "More" link styles */
 .feature-card-link {
-  font-size: 0.94rem;
+  font-size: 0.98rem;
   font-family: "Helvetica Neue", Arial, sans-serif;
   color: #67DEF6;
   font-weight: 700;
@@ -105,26 +125,54 @@
   background: none;
   outline: none;
   border: none;
-  padding: 3px 12px 3px 0;
+  padding: 5px 14px 5px 2px;
   margin: 0;
   border-radius: 4px;
   cursor: pointer;
   position: relative;
   z-index: 2;
-  transition: color 0.13s, text-decoration 0.14s;
+  align-self: flex-start;
+  transition: color 0.14s, background 0.13s, text-decoration 0.15s;
 }
 .feature-card-link:focus,
 .feature-card-link:focus-visible {
   outline: 2px solid #67DEF6;
   text-decoration: underline;
   color: #67DEF6;
-  background: rgba(103,222,246,0.16);
+  background: rgba(103,222,246,0.13);
 }
 .feature-card-link:hover, .feature-card-link:active {
   text-decoration: underline;
   color: #60E1E0;
-  background: rgba(103,222,246,0.15);
+  background: rgba(103,222,246,0.13);
 }
+
+/* Contrast for 'about'/'resources' on pale backgrounds */
+.feature-card[style*="background: #B9BEC9"], .feature-card[style*="background: #00C46F"] {
+  box-shadow: 0 3px 18px 0 #215f54a1, 0 1px 10px 0 #3ccbc921;
+}
+.feature-card[style*="background: #B9BEC9"] .feature-card-title,
+.feature-card[style*="background: #B9BEC9"] .feature-card-desc,
+.feature-card[style*="background: #B9BEC9"] .feature-card-category,
+.feature-card[style*="background: #00C46F"] .feature-card-title,
+.feature-card[style*="background: #00C46F"] .feature-card-desc,
+.feature-card[style*="background: #00C46F"] .feature-card-category {
+  color: #20272D !important;
+}
+
+/* Ensure text/link contrast for colored cards */
+.feature-card[style*="background: #F04C40"] .feature-card-link,
+.feature-card[style*="background: #161E39"] .feature-card-link {
+  color: #fff;
+}
+.feature-card[style*="background: #F04C40"] .feature-card-link:hover,
+.feature-card[style*="background: #F04C40"] .feature-card-link:focus,
+.feature-card[style*="background: #161E39"] .feature-card-link:hover,
+.feature-card[style*="background: #161E39"] .feature-card-link:focus {
+  color: #60E1E0;
+}
+
+/* Accessible visually hidden class (for SR only text) */
 .screen-reader-only {
   position: absolute;
   width: 1px; height: 1px; padding: 0; margin: -1px;
