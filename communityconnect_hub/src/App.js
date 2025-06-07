@@ -70,20 +70,36 @@ function App() {
         icon: "☀️",
       });
     }, 250);
-    // Simulate Events API
+    // Simulate Events API - Chennai Specific
     setTimeout(() => {
       setEvents([
         {
-          name: "Farmers Market",
-          date: "2024-06-08",
-          time: "8am-12pm",
-          location: "Main Square",
+          name: "Chennai Book Fair",
+          date: "2024-06-09",
+          time: "10am-7pm",
+          location: "YMCA Grounds, Nandanam",
+          description: "One of Asia's largest annual book fairs, showcasing local and international publishers.",
         },
         {
-          name: "Outdoor Concert Series",
-          date: "2024-06-09",
-          time: "5pm-8pm",
-          location: "Riverside Park",
+          name: "Marina Beach Clean Up Drive",
+          date: "2024-06-10",
+          time: "6am-9am",
+          location: "Marina Beach",
+          description: "Join volunteers to help keep Chennai's iconic coastline clean.",
+        },
+        {
+          name: "Chennai Food Festival",
+          date: "2024-06-11",
+          time: "1pm-10pm",
+          location: "Chennai Trade Centre",
+          description: "Savour authentic South Indian and international cuisine with music and entertainment.",
+        },
+        {
+          name: "Carnatic Music Concert",
+          date: "2024-06-12",
+          time: "6pm-9pm",
+          location: "Music Academy, TTK Road",
+          description: "Experience the magic of classical music performed by renowned Chennai artists.",
         },
       ]);
     }, 350);
@@ -306,16 +322,39 @@ function App() {
   function EventsWidget() {
     return (
       <div className="widget" id="events" style={widgetStyle}>
-        <h3 style={widgetTitleStyle}>Local Events</h3>
+        <h3 style={widgetTitleStyle}>
+          Chennai Events <span role="img" aria-label="Chennai">🛕</span>
+        </h3>
         {events.length ? (
-          <ul style={{ paddingLeft: 16, margin: 0 }}>
+          <ul style={{ padding: 0, margin: 0, listStyle: "none" }}>
             {events.map((ev, idx) => (
-              <li key={idx} style={{ marginBottom: 10 }}>
-                <span style={{ fontWeight: 500 }}>{ev.name}</span>
-                <div style={{ fontSize: ".95em", color: "var(--text-secondary)" }}>
-                  {ev.date}, {ev.time}
+              <li
+                key={idx}
+                style={{
+                  marginBottom: 18,
+                  background: "#181f25",
+                  borderRadius: 9,
+                  border: "1.2px solid var(--border-color)",
+                  boxShadow: "0 1px 7px 0 #0002",
+                  padding: "13px 14px"
+                }}
+                tabIndex={0}
+                aria-label={`Event: ${ev.name} on ${ev.date} at ${ev.location}`}
+              >
+                <div style={{ fontWeight: 600, fontSize: "1.12em", color: "var(--accent)", marginBottom: 2 }}>
+                  {ev.name}
                 </div>
-                <div style={{ fontSize: ".95em" }}>{ev.location}</div>
+                <div style={{ fontSize: ".98em", color: "var(--secondary)", fontWeight: 500, letterSpacing: 0.2 }}>
+                  {ev.date} &mdash; {ev.time}
+                </div>
+                <div style={{ fontSize: ".97em", marginTop: 2, color: "#fff9" }}>
+                  <span style={{ fontWeight: 500, color: "var(--text-secondary)" }}>Venue:</span> {ev.location}
+                </div>
+                {ev.description && (
+                  <div style={{ marginTop: 6, color: "#d1dbe6", fontSize: ".96em", lineHeight: 1.4 }}>
+                    {ev.description}
+                  </div>
+                )}
               </li>
             ))}
           </ul>
