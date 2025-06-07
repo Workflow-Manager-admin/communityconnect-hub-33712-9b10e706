@@ -28,12 +28,25 @@ function RegisterPage({ user, regForm, setRegForm, setUser }) {
     setUser({ ...regForm });
   }
   return (
-    <section className="cc-unified-section" id="account" style={{ marginTop: 42, maxWidth: 430, marginLeft:"auto", marginRight:"auto" }}>
+    <section
+      className="cc-unified-section"
+      id="account"
+      tabIndex={-1}
+      aria-label="User Account and Registration Section"
+      role="region"
+      style={{ marginTop: 42, maxWidth: 430, marginLeft: "auto", marginRight: "auto" }}
+    >
       <h2 style={{ color: "var(--accent)", fontWeight: 800, fontSize: "2rem" }}>
         {user ? "Your Account" : "Register for Updates"}
       </h2>
       {user ? (
-        <div className="cc-card" style={{ background: "#181818", color: "var(--accent)", maxWidth: 350, marginBottom: 14 }}>
+        <div
+          className="cc-card"
+          style={{ background: "#181818", color: "var(--accent)", maxWidth: 350, marginBottom: 14 }}
+          tabIndex={0}
+          role="region"
+          aria-label="User Account Information"
+        >
           <div style={{ fontWeight: 500, fontSize: "1.1em" }}>
             Hello, {user.name ? user.name : "User"}!
           </div>
@@ -51,6 +64,8 @@ function RegisterPage({ user, regForm, setRegForm, setUser }) {
             className="btn"
             style={{ marginTop: 10, background: "var(--secondary)" }}
             onClick={() => setUser(null)}
+            tabIndex={0}
+            aria-label="Log Out"
           >
             Log Out
           </button>
@@ -61,6 +76,8 @@ function RegisterPage({ user, regForm, setRegForm, setUser }) {
           style={{ background: "#181818", maxWidth: 350, color: "var(--accent)" }}
           onSubmit={handleRegister}
           aria-label="User Registration"
+          role="form"
+          tabIndex={0}
         >
           <div style={{ marginBottom: 14 }}>
             <label htmlFor="reg-name" style={{ color: "var(--text-secondary)", marginBottom: 3, fontWeight: 500 }}>
@@ -87,6 +104,7 @@ function RegisterPage({ user, regForm, setRegForm, setUser }) {
               onChange={handleRegChange}
               autoComplete="name"
               autoFocus
+              aria-required="true"
             />
           </div>
           <div style={{ marginBottom: 14 }}>
@@ -113,6 +131,7 @@ function RegisterPage({ user, regForm, setRegForm, setUser }) {
               maxLength={48}
               onChange={handleRegChange}
               autoComplete="email"
+              aria-required="true"
             />
           </div>
           <div style={{ marginBottom: 6 }}>
@@ -123,6 +142,7 @@ function RegisterPage({ user, regForm, setRegForm, setUser }) {
                 checked={regForm.subscribe}
                 onChange={handleRegChange}
                 style={{ marginRight: 7, transform: "scale(1.1)" }}
+                aria-checked={regForm.subscribe}
               />
               Subscribe to alerts/updates
             </label>
@@ -131,6 +151,7 @@ function RegisterPage({ user, regForm, setRegForm, setUser }) {
             className="btn"
             style={{ background: "var(--secondary)" }}
             type="submit"
+            aria-label="Register"
           >
             Register
           </button>

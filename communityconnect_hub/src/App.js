@@ -429,7 +429,14 @@ function App() {
     <div className="app" style={themeVars}>
       <Router>
         <Navbar />
-        <main id="main-content" style={{ marginTop: 75, paddingBottom: 40 }}>
+        {/* Main landmark for a11y, has full container for skip content and improved focusability */}
+        <main 
+          id="main-content" 
+          tabIndex={-1}
+          style={{ marginTop: 75, paddingBottom: 40 }}
+          aria-label="Main content"
+          role="main"
+        >
           <div className="container">
             <Routes>
               <Route path="/" element={<HomePage />} />
@@ -480,7 +487,7 @@ function App() {
             </Routes>
           </div>
         </main>
-        {/* Accessible footer */}
+        {/* Accessible footer, now with role and tab index for smoother focus navigation */}
         <Footer />
       </Router>
     </div>

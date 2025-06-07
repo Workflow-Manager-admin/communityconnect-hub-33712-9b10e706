@@ -92,8 +92,22 @@ function WeatherPage() {
   }
 
   return (
-    <section className="weather-page-section" aria-label="Current Weather conditions">
-      <div className="weather-widget" tabIndex={0} aria-live="polite" aria-busy={loading}>
+    <section
+      className="weather-page-section"
+      aria-label="Current Weather conditions"
+      id="weather-section"
+      role="region"
+      tabIndex={-1}
+      style={{ outline: "none" }}
+    >
+      <div
+        className="weather-widget"
+        tabIndex={0}
+        aria-live="polite"
+        aria-busy={loading}
+        role="group"
+        aria-label="Current weather widget"
+      >
         <div className="weather-header">
           <span className="weather-title">
             <span role="img" aria-label="weather">🌤️</span> Weather
@@ -103,9 +117,11 @@ function WeatherPage() {
           </span>
         </div>
         {loading ? (
-          <div className="weather-loading">Loading weather...</div>
+          <div className="weather-loading" role="status" aria-live="polite">
+            Loading weather...
+          </div>
         ) : error ? (
-          <div className="weather-error" role="alert">{error}</div>
+          <div className="weather-error" role="alert" aria-live="assertive">{error}</div>
         ) : weather ? (
           <div className="weather-details">
             <div className="weather-icon-row">
@@ -142,7 +158,7 @@ function WeatherPage() {
             </dl>
           </div>
         ) : (
-          <div className="weather-error">Weather unavailable.</div>
+          <div className="weather-error" role="alert">Weather unavailable.</div>
         )}
       </div>
     </section>

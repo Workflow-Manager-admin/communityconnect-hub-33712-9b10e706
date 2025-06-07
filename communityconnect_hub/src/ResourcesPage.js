@@ -210,7 +210,14 @@ function ResourcesPage({ searchQuery, setSearchQuery }) {
   }
 
   return (
-    <section className="cc-unified-section" id="resources" style={{marginBottom: 24}}>
+    <section
+      className="cc-unified-section"
+      id="resources"
+      aria-label="Community Resources main section"
+      tabIndex={-1}
+      role="region"
+      style={{ marginBottom: 24 }}
+    >
       <div
         className="centered-resource-description"
         style={{

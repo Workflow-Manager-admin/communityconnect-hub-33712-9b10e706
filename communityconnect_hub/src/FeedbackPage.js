@@ -28,6 +28,9 @@ function FeedbackPage({ feedback, setFeedback }) {
     <section
       className="cc-unified-section"
       id="feedback"
+      aria-label="Feedback section"
+      role="region"
+      tabIndex={-1}
       style={{
         marginTop: 42,
         maxWidth: 420,
@@ -38,7 +41,14 @@ function FeedbackPage({ feedback, setFeedback }) {
       <h2 style={{ color: "var(--accent)", fontWeight: 800, fontSize: "1.5rem" }}>
         Send Feedback or Request a Feature
       </h2>
-      <form className="cc-card" onSubmit={handleFeedback} aria-label="Feedback Form" style={{background:"#121212", maxWidth:410}}>
+      <form
+        className="cc-card"
+        onSubmit={handleFeedback}
+        aria-label="Feedback Form"
+        style={{ background: "#121212", maxWidth: 410 }}
+        tabIndex={0}
+        role="form"
+      >
         <textarea
           name="feedback"
           value={feedback.message}
@@ -55,22 +65,39 @@ function FeedbackPage({ feedback, setFeedback }) {
             background: "#181818",
             color: "var(--accent)",
             fontSize: "1rem",
-            marginBottom: 10
+            marginBottom: 10,
+            outline: "none"
           }}
+          aria-label="Feedback message"
+          aria-required="true"
+          aria-describedby={feedback.message.trim() === "" ? "feedback-error" : undefined}
         />
+        {feedback.message.trim() === "" && (
+          <span
+            id="feedback-error"
+            style={{ color: "var(--secondary)", fontSize: ".96em", display: "block" }}
+            aria-live="polite"
+          >
+            Please enter feedback.
+          </span>
+        )}
         <br />
         <button
           className="btn"
-          style={{ background: "var(--secondary)" }}
+          style={{
+            background: "var(--secondary)",
+            outline: "none"
+          }}
           type="submit"
           disabled={feedback.message.trim() === ""}
+          aria-label="Submit feedback"
         >
           Submit
         </button>
         {feedback.submitted && (
           <div
             style={{
-              color: "var(--accent)",
+              color: "#fff",
               marginTop: 12,
               background: "#163216",
               borderRadius: 7,
@@ -78,6 +105,9 @@ function FeedbackPage({ feedback, setFeedback }) {
               border: "1px solid #33FF33",
               fontSize: 16
             }}
+            tabIndex={0}
+            aria-live="polite"
+            role="status"
           >
             Thank you for your feedback!
           </div>

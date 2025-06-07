@@ -387,7 +387,14 @@ function EventsPage({ events = [], user }) {
 
   // Render the list of events using the modern grid/card system
   return (
-    <section className="cc-unified-section" aria-label="Chennai Events" style={{maxWidth: 980, marginLeft: "auto", marginRight: "auto"}}>
+    <section
+      className="cc-unified-section"
+      aria-label="Chennai Events"
+      id="events-section"
+      role="region"
+      tabIndex={-1}
+      style={{ maxWidth: 980, marginLeft: "auto", marginRight: "auto" }}
+    >
       <h2 style={{ color: "var(--accent)", fontWeight: 800, fontSize: "2rem", marginBottom: 14 }}>
         Chennai Events <span role="img" aria-label="Chennai">🛕</span>
       </h2>
