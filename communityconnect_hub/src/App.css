@@ -4,6 +4,8 @@
   --text-color: #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.7);
   --border-color: rgba(255, 255, 255, 0.1);
+  --news-card-bg: linear-gradient(103deg, #191d21 80%, #292626 100%);
+  --news-card-hover-shadow: 0 7px 38px 0 #ff00003a, 0 2px 32px 0 #ff000057;
 }
 
 body {
