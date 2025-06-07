@@ -250,6 +250,18 @@ function NewsPage() {
               role="alert"
             >
               {error}
+              {/* Developer warning if API key is missing in dev environment */}
+              {process.env.NODE_ENV === "development"
+                && error.includes("API key") && (
+                <div style={{
+                  marginTop: 8, color: "#fb6262", fontWeight: 600, fontSize: ".97em"
+                }}>
+                  Developer Hint: Check that you have a <code>.env</code> file directly inside the <code>communityconnect_hub/</code> folder,
+                  containing <br /><code>REACT_APP_NEWS_API_KEY=your_actual_api_key_value</code><br />
+                  After adding/changing your API key, always stop and restart <code>npm start</code>.<br />
+                  If this is running on a deployed/static build, environment variables cannot be set at runtime.
+                </div>
+              )}
             </div>
           )}
           {/* News list */}

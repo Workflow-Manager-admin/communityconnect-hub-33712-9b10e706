@@ -13,9 +13,19 @@ export async function fetchLatestNews({ query = "", pageSize = 5 } = {}) {
    *   - pageSize: Number of articles to retrieve (default 5)
    * @returns Array of news articles or throws error
    */
+  // DEBUG: Print key status for dev use only (remove for production)
+  if (process.env.NODE_ENV === "development") {
+    // eslint-disable-next-line no-console
+    console.log("REACT_APP_NEWS_API_KEY present?", !!process.env.REACT_APP_NEWS_API_KEY);
+  }
   const API_KEY = process.env.REACT_APP_NEWS_API_KEY;
   if (!API_KEY) {
-    throw new Error("Missing News API key (REACT_APP_NEWS_API_KEY not set)");
+    throw new Error(
+      "Missing News API key (REACT_APP_NEWS_API_KEY not set). " +
+      "If running locally, ensure you have a `.env` file in the project root (communityconnect_hub/.env) " +
+      "with this variable and restart your `npm start`. " +
+      "See https://create-react-app.dev/docs/adding-custom-environment-variables/"
+    );
   }
   // Using NewsAPI.org as an example (update endpoint if using another)
   const endpoint = `https://newsapi.org/v2/top-headlines?country=in${query ? `&q=${encodeURIComponent(query)}` : ""}&pageSize=${pageSize}&apiKey=${API_KEY}`;
