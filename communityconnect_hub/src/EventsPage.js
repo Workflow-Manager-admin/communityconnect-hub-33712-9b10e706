@@ -1,5 +1,21 @@
 import React, { useState } from "react";
 
+/*
+  === DESIGN AUDIT ===
+  EventsPage shows a list and optional submission form if user is logged in.
+  - Color palette: Dark background, secondary accent (red) for key elements.
+  - Spacing/padding: Ample, responsive.
+  - Font: Good hierarchy for event titles/dates/etc.
+  - Navigation: Event form is tab-navigable; in list each LI is tabIndex=0 and ARIA-label.
+  - Accessibility: Labels, required, aria-invalid/alerts, correct input types.
+  - Feedback: "Event added!" uses role="polite."
+  - TODO:
+      - Add heading structure for improved screen reader navigation (currently just <h2>).
+      - Improve visual focus state in event forms/fields.
+      - Add skip-to-events link for a11y.
+      - Consider making events deletable by admin/user.
+      - Consider moving margin/padding style to CSS (for consistency).
+*/
 /**
  * EventsPage component
  * Displays the list of local events. If the user is logged in (registered), shows

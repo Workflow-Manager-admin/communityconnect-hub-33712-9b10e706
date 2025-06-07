@@ -1,3 +1,16 @@
+// === DESIGN AUDIT ===
+// RegisterPage manages registration and account display.
+// - Color palette: Dark, with accent colors for controls/fields/buttons.
+// - Spacing: Forms/cards are spaced/padded for clarity and usability.
+// - Typography: Consistent header and field label scale.
+// - Accessibility: Proper labels, input ARIA, tab order, and required attributes.
+// - TODO for polish:
+//     - Focus styling (border/color/shadow) can be enhanced for fields/buttons.
+//     - Add ARIA-live for any feedback or error field.
+//     - Add a role/region for main account section.
+//     - Provide skip link for a11y navigation.
+//     - Provide button-like focus for Logout/register.
+
 import React from "react";
 
 // PUBLIC_INTERFACE

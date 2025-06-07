@@ -1,3 +1,19 @@
+/*
+  === DESIGN AUDIT: Main App Container ===
+  - Background: global dark, accent colors pulled from CSS vars ("--primary", "--secondary", "--accent").
+  - Navigation: Navbar is globally present, fixed, with logo and primary nav.
+  - Spacing/margins: Consistent container class, min-height 100vh.
+  - Typography: Modern, readable system fonts used.
+  - Font size/scale: global container and typical base font scale.
+  - Navigation logic: All routes accessible via <Routes> and react-router.
+  - Accessibility: Good focus management and roles throughout, but skip-to-content and nav link active state could improve.
+  - Footer: present, accessible.
+  - TODO:
+      - Add skip-to-content link at top for keyboard users.
+      - Add nav link active/highlighted state for current page.
+      - Consider <main>, <nav>, <footer> landmarks with ARIA roles.
+      - Theme: Consider allowing user theme switch, or expanding palette options.
+*/
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";

@@ -1,3 +1,16 @@
+// === DESIGN AUDIT ===
+// WeatherPage displays current city weather with dark-themed widget and icon.
+// - Color palette: Uses dark backgrounds with accented header and details.
+// - Spacing: Widget/panels and rows are well padded and spaced.
+// - Typography: Good contrast, clear main/fine-print scaling.
+// - Navigation: Focusable widget/sections, labeled.
+// - Accessibility: aria-label, aria-busy, and live regions for loading/error.
+// - TODO for polish:
+//     - Improve visible focus state for weather widget in CSS.
+//     - Confirm color contrast for secondary elements (esp. <span> on background).
+//     - Add skip link/landmark for fast navigation.
+//     - Use a variable for WEATHER_API_KEY or set up secure proxy for prod.
+
 import React, { useEffect, useState } from "react";
 import "./WeatherPage.css";
 

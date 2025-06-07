@@ -2,6 +2,23 @@ import React from "react";
 import "./HomePage.css";
 import { Link } from "react-router-dom";
 
+/*
+  === DESIGN AUDIT ===
+  HomePage implements a modern card grid landing page with dark background, icons, and navigation via cards.
+  - Color palette broadly matches spec: #23262D for dark, proper color for cards.
+  - Spacing: Good use of CSS grid and card padding (see HomePage.css).
+  - Font: Follows design doc; title size, boldness and visual hierarchy good.
+  - Navigation logic: Each card is a <Link>; tab order, role, and ARIA all good.
+  - Accessibility: Focus/keyboard navigation, alt, role="img", and contrast are respected, but check color contrast on blue and red cards.
+  - Responsive: Grid collapses (see HomePage.css @media queries).
+  - TODO for polish:
+      - Card active/focus states can be more visible, esp. color+shadow.
+      - "About" card routes to /resources; should become /about with unique content if added.
+      - Consistent focus ring with branded color.
+      - Add skip-to-content/landmark for a11y.
+      - Check tabIndex; should be 0 only on first element for cards if inside <a>.
+*/
+
 // PUBLIC_INTERFACE
 /**
  * CommunityConnect Hub - Home Page

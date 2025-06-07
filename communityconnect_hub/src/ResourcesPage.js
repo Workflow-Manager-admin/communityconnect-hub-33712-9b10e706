@@ -1,3 +1,18 @@
+// === DESIGN AUDIT ===
+// ResourcesPage provides a directory of quick-access cards, organized into sections.
+// - Color palette: Dark background, secondary color (red) and accent (white) for all elements.
+// - Spacing: Card and section spacing is ample, matches design notes.
+// - Typography: Headers, resource names, and contact info have correct hierarchy and scale.
+// - Navigation: Tabbing through sections/cards works, input has proper ARIA and labeling.
+// - Accessibility: ARIA descriptors, focusable elements, readable text, link contrast on resource names with external link icon.
+// - Responsive: Wraps cards and text well for various screen sizes.
+// TODO for polish:
+//   - Add visually hidden section landmarks (e.g. role="region"/aria-labelledby) for improved navigation.
+//   - Improve focus outline on resource cards (CSS).
+//   - Possibly animate appearance or hover/focus states for cards.
+//   - Ensure Live region or update for appearances if filled/dynamic in future.
+//   - Test with high-contrast and screen reader.
+
 import React from "react";
 
 // PUBLIC_INTERFACE

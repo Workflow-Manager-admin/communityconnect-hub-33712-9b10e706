@@ -1,5 +1,18 @@
 import React from "react";
 
+/*
+  === DESIGN AUDIT ===
+  FeedbackPage provides a form for submitting feedback/requests.
+  - Color/spacing: Consistent with dark theme.
+  - Typographic scale: Good for title and body.
+  - Form: Proper ARIA, required, and length limits; visual feedback is clear.
+  - Accessibility: Focus/submit/failure handled, role="alert" for submitted message.
+  - TODO:
+    - Improve visible focus styling for textarea/submit button.
+    - Add landmark/region role.
+    - Enhance contrast for borders on light backgrounds.
+    - Consider ARIA live/region for error messaging.
+*/
 // PUBLIC_INTERFACE
 function FeedbackPage({ feedback, setFeedback }) {
   /** Feedback and feature request form page. */

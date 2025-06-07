@@ -1,6 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { fetchLatestNews } from "./newsApi";
 
+/*
+  === DESIGN AUDIT ===
+  NewsPage provides a card grid of news articles with dark background.
+  - Dark theme is respected (uses --news-card-bg, borders, accent/secondary).
+  - Spacing: Ample card padding/margin.
+  - Typography: Visual hierarchy for headline, desc, and meta. Font scale matches design.
+  - Navigation: External links open in new tab; icons show. Tab order is correct.
+  - Accessibility: ARIA labels, alt text for icons (none needed for plain cards), role="alert" shown for errors, keyboard-friendliness.
+  - Responsive: Uses flex-wrap/gaps for cards.
+  - Contrast: Secondary color can sometimes be low contrast on error bg.
+  - TODO:
+      - Consider more visual feedback on card hover/focus (e.g., colored outline/shadow).
+      - Ensure link colors always have sufficient contrast.
+      - Headline links should have visible focus.
+      - Skip link to main content.
+*/
+
 // PUBLIC_INTERFACE
 /**
  * NewsPage
