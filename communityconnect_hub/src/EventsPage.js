@@ -26,7 +26,7 @@ import React, { useState } from "react";
  *  - user: User object if authenticated; falsy/null if not logged in (optional, supports conditional logic)
  */
  // PUBLIC_INTERFACE
-function EventsPage({ events = [], user }) {
+function EventsPage({ events = [] }) {
   // Manage local event state (merge session and submitted events)
   const [localEvents, setLocalEvents] = useState(events || []);
   const emptyForm = {
@@ -35,21 +35,23 @@ function EventsPage({ events = [], user }) {
     time: "",
     location: "",
     description: "",
+    contact: "",
   };
   const [form, setForm] = useState(emptyForm);
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
-  // Helper: Validate form fields
+  // Helper: Validate form fields (now includes contact info)
   function validate(formObj) {
     let errs = {};
     if (!formObj.name.trim()) errs.name = "Event name is required";
     if (!formObj.date) errs.date = "Date is required";
     if (!formObj.time) errs.time = "Time is required";
     if (!formObj.location.trim()) errs.location = "Location is required";
+    if (!formObj.contact.trim()) errs.contact = "Contact info is required";
     if (formObj.description.length > 300)
       errs.description = "Description is too long (300 character max)";
-    // Basic future date check (optional, can be removed)
+    // Basic future date check (optional)
     if (formObj.date && isNaN(Date.parse(formObj.date))) {
       errs.date = "Invalid date";
     }
@@ -77,10 +79,10 @@ function EventsPage({ events = [], user }) {
     setLocalEvents((prev) => [
       {
         ...form,
-        // Format for accessibility
         name: form.name.trim(),
         location: form.location.trim(),
         description: form.description.trim(),
+        contact: form.contact.trim(),
       },
       ...prev,
     ]);
@@ -88,7 +90,7 @@ function EventsPage({ events = [], user }) {
     setSubmitted(true);
   }
 
-  // UI for the event submission form (shown only if registered/logged-in)
+  // Event form is always visible for this version, per requirements
   function renderEventForm() {
     return (
       <section
@@ -119,6 +121,7 @@ function EventsPage({ events = [], user }) {
           aria-label="Event Submission Form"
           autoComplete="off"
         >
+          {/* Event Name */}
           <div style={{ marginBottom: 12 }}>
             <label
               htmlFor="event-name"
@@ -166,6 +169,7 @@ function EventsPage({ events = [], user }) {
               </div>
             )}
           </div>
+          {/* Date & Time */}
           <div style={{ display: "flex", gap: 10, marginBottom: 12 }}>
             <div style={{ flex: 1 }}>
               <label
@@ -252,6 +256,7 @@ function EventsPage({ events = [], user }) {
               )}
             </div>
           </div>
+          {/* Location */}
           <div style={{ marginBottom: 12 }}>
             <label
               htmlFor="event-location"
@@ -296,6 +301,53 @@ function EventsPage({ events = [], user }) {
               </div>
             )}
           </div>
+          {/* Contact Info */}
+          <div style={{ marginBottom: 12 }}>
+            <label
+              htmlFor="event-contact"
+              style={{ color: "var(--text-secondary)", fontWeight: 500 }}
+            >
+              Contact Info <span aria-hidden="true" style={{ color: "var(--secondary)" }}>*</span>
+            </label>
+            <input
+              id="event-contact"
+              name="contact"
+              type="text"
+              value={form.contact}
+              onChange={handleChange}
+              required
+              maxLength={64}
+              placeholder="Phone, email, or other contact"
+              style={{
+                width: "100%",
+                marginTop: 3,
+                borderRadius: 6,
+                padding: "9px 13px",
+                background: "#232323",
+                color: "var(--accent)",
+                border: "1.1px solid var(--secondary)",
+                fontSize: "1rem",
+                outline: "none",
+                marginBottom: 2,
+              }}
+              aria-invalid={!!errors.contact}
+              aria-describedby={errors.contact ? "event-contact-err" : undefined}
+            />
+            {errors.contact && (
+              <div
+                id="event-contact-err"
+                style={{
+                  color: "var(--secondary)",
+                  fontSize: "0.98em",
+                  marginBottom: 2,
+                }}
+                role="alert"
+              >
+                {errors.contact}
+              </div>
+            )}
+          </div>
+          {/* Description */}
           <div style={{ marginBottom: 12 }}>
             <label
               htmlFor="event-description"
@@ -358,7 +410,8 @@ function EventsPage({ events = [], user }) {
               !form.name.trim() ||
               !form.date ||
               !form.time ||
-              !form.location.trim()
+              !form.location.trim() ||
+              !form.contact.trim()
             }
           >
             Add Event
@@ -385,7 +438,7 @@ function EventsPage({ events = [], user }) {
     );
   }
 
-  // Render the list of events using the modern grid/card system
+  // Render the list of events using the modern grid/card system and show contact info per requirements
   return (
     <section
       className="cc-unified-section"
@@ -398,12 +451,9 @@ function EventsPage({ events = [], user }) {
       <h2 style={{ color: "var(--accent)", fontWeight: 800, fontSize: "2rem", marginBottom: 14 }}>
         Chennai Events <span role="img" aria-label="Chennai">🛕</span>
       </h2>
-
-      {/* Conditional render: show event submission for registered users only */}
-      {user && renderEventForm()}
-
+      {renderEventForm()}
       {localEvents && localEvents.length ? (
-        <div className="cc-card-grid" style={{gap: "20px 16px", marginTop: 8}}>
+        <div className="cc-card-grid" style={{ gap: "20px 16px", marginTop: 8 }}>
           {localEvents.map((ev, idx) => (
             <div
               key={idx}
@@ -418,15 +468,20 @@ function EventsPage({ events = [], user }) {
               tabIndex={0}
               aria-label={`Event: ${ev.name} on ${ev.date} at ${ev.location}`}
             >
-              <div className="cc-card-title" style={{color: "var(--accent)", marginBottom: 2}}>
+              <div className="cc-card-title" style={{ color: "var(--accent)", marginBottom: 2 }}>
                 {ev.name}
               </div>
-              <div className="cc-card-meta" style={{color: "var(--secondary)", fontSize: ".98em"}}>
+              <div className="cc-card-meta" style={{ color: "var(--secondary)", fontSize: ".98em" }}>
                 {ev.date} &mdash; {ev.time}
               </div>
               <div style={{ fontSize: ".97em", marginTop: 2, color: "#fff9" }}>
                 <span style={{ fontWeight: 500, color: "var(--text-secondary)" }}>Venue:</span> {ev.location}
               </div>
+              {ev.contact && (
+                <div style={{ fontSize: ".96em", color: "#b9bec9", marginTop: 4 }}>
+                  <span style={{ fontWeight: 600, color: "var(--secondary)" }}>Contact:</span> {ev.contact}
+                </div>
+              )}
               {ev.description && (
                 <div style={{ marginTop: 6, color: "#d1dbe6", fontSize: ".96em", lineHeight: 1.4 }}>
                   {ev.description}
