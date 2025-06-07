@@ -1,16 +1,387 @@
-import React from "react";
+import React, { useState } from "react";
 
-// PUBLIC_INTERFACE
-function EventsPage({ events }) {
-  /** Displays a list of local events. */
+/**
+ * EventsPage component
+ * Displays the list of local events. If the user is logged in (registered), shows
+ * an accessible, themed event submission form. New events are added for session only.
+ * 
+ * Props:
+ *  - events: Array of event objects (initial events, from parent)
+ *  - user: User object if authenticated; falsy/null if not logged in (optional, supports conditional logic)
+ */
+ // PUBLIC_INTERFACE
+function EventsPage({ events = [], user }) {
+  // Manage local event state (merge session and submitted events)
+  const [localEvents, setLocalEvents] = useState(events || []);
+  const emptyForm = {
+    name: "",
+    date: "",
+    time: "",
+    location: "",
+    description: "",
+  };
+  const [form, setForm] = useState(emptyForm);
+  const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+
+  // Helper: Validate form fields
+  function validate(formObj) {
+    let errs = {};
+    if (!formObj.name.trim()) errs.name = "Event name is required";
+    if (!formObj.date) errs.date = "Date is required";
+    if (!formObj.time) errs.time = "Time is required";
+    if (!formObj.location.trim()) errs.location = "Location is required";
+    if (formObj.description.length > 300)
+      errs.description = "Description is too long (300 character max)";
+    // Basic future date check (optional, can be removed)
+    if (formObj.date && isNaN(Date.parse(formObj.date))) {
+      errs.date = "Invalid date";
+    }
+    return errs;
+  }
+
+  // Handle field changes
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setForm((f) => ({ ...f, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: undefined }));
+    setSubmitted(false);
+  }
+
+  // Handle event submission
+  function handleSubmit(e) {
+    e.preventDefault();
+    const validation = validate(form);
+    setErrors(validation);
+    if (Object.keys(validation).length !== 0) {
+      setSubmitted(false);
+      return;
+    }
+    // Add event to local state as latest event (top)
+    setLocalEvents((prev) => [
+      {
+        ...form,
+        // Format for accessibility
+        name: form.name.trim(),
+        location: form.location.trim(),
+        description: form.description.trim(),
+      },
+      ...prev,
+    ]);
+    setForm(emptyForm);
+    setSubmitted(true);
+  }
+
+  // UI for the event submission form (shown only if registered/logged-in)
+  function renderEventForm() {
+    return (
+      <section
+        aria-label="Add New Event"
+        style={{
+          margin: "34px 0 20px",
+          background: "#181818",
+          padding: "22px 18px",
+          borderRadius: 11,
+          border: "1.2px solid var(--border-color)",
+          maxWidth: 430,
+          boxShadow: "0 1px 10px #0003",
+        }}
+      >
+        <h3
+          style={{
+            color: "var(--secondary)",
+            fontSize: "1.23rem",
+            fontWeight: 700,
+            marginBottom: 14,
+            marginTop: 0,
+          }}
+        >
+          Submit a Community Event
+        </h3>
+        <form
+          onSubmit={handleSubmit}
+          aria-label="Event Submission Form"
+          autoComplete="off"
+        >
+          <div style={{ marginBottom: 12 }}>
+            <label
+              htmlFor="event-name"
+              style={{
+                color: "var(--text-secondary)",
+                fontWeight: 500,
+              }}
+            >
+              Event Name <span aria-hidden="true" style={{ color: "var(--secondary)" }}>*</span>
+            </label>
+            <input
+              id="event-name"
+              name="name"
+              type="text"
+              value={form.name}
+              onChange={handleChange}
+              required
+              maxLength={64}
+              style={{
+                width: "100%",
+                marginTop: 3,
+                borderRadius: 6,
+                padding: "9px 13px",
+                background: "#232323",
+                color: "var(--accent)",
+                border: "1.1px solid var(--secondary)",
+                fontSize: "1rem",
+                outline: "none",
+                marginBottom: 2,
+              }}
+              aria-invalid={!!errors.name}
+              aria-describedby={errors.name ? "event-name-err" : undefined}
+            />
+            {errors.name && (
+              <div
+                id="event-name-err"
+                style={{
+                  color: "var(--secondary)",
+                  fontSize: "0.98em",
+                  marginBottom: 2,
+                }}
+                role="alert"
+              >
+                {errors.name}
+              </div>
+            )}
+          </div>
+          <div style={{ display: "flex", gap: 10, marginBottom: 12 }}>
+            <div style={{ flex: 1 }}>
+              <label
+                htmlFor="event-date"
+                style={{ color: "var(--text-secondary)", fontWeight: 500 }}
+              >
+                Date <span aria-hidden="true" style={{ color: "var(--secondary)" }}>*</span>
+              </label>
+              <input
+                id="event-date"
+                name="date"
+                type="date"
+                value={form.date}
+                onChange={handleChange}
+                required
+                style={{
+                  width: "100%",
+                  marginTop: 3,
+                  borderRadius: 6,
+                  padding: "9px 10px",
+                  background: "#232323",
+                  color: "var(--accent)",
+                  border: "1.1px solid var(--secondary)",
+                  fontSize: "1rem",
+                  outline: "none",
+                  marginBottom: 2,
+                }}
+                aria-invalid={!!errors.date}
+                aria-describedby={errors.date ? "event-date-err" : undefined}
+              />
+              {errors.date && (
+                <div
+                  id="event-date-err"
+                  style={{
+                    color: "var(--secondary)",
+                    fontSize: ".98em",
+                    marginBottom: 2,
+                  }}
+                  role="alert"
+                >
+                  {errors.date}
+                </div>
+              )}
+            </div>
+            <div style={{ flex: 1 }}>
+              <label
+                htmlFor="event-time"
+                style={{ color: "var(--text-secondary)", fontWeight: 500 }}
+              >
+                Time <span aria-hidden="true" style={{ color: "var(--secondary)" }}>*</span>
+              </label>
+              <input
+                id="event-time"
+                name="time"
+                type="time"
+                value={form.time}
+                onChange={handleChange}
+                required
+                style={{
+                  width: "100%",
+                  marginTop: 3,
+                  borderRadius: 6,
+                  padding: "9px 10px",
+                  background: "#232323",
+                  color: "var(--accent)",
+                  border: "1.1px solid var(--secondary)",
+                  fontSize: "1rem",
+                  outline: "none",
+                  marginBottom: 2,
+                }}
+                aria-invalid={!!errors.time}
+              />
+              {errors.time && (
+                <div
+                  style={{
+                    color: "var(--secondary)",
+                    fontSize: ".98em",
+                    marginBottom: 2,
+                  }}
+                  role="alert"
+                >
+                  {errors.time}
+                </div>
+              )}
+            </div>
+          </div>
+          <div style={{ marginBottom: 12 }}>
+            <label
+              htmlFor="event-location"
+              style={{ color: "var(--text-secondary)", fontWeight: 500 }}
+            >
+              Location <span aria-hidden="true" style={{ color: "var(--secondary)" }}>*</span>
+            </label>
+            <input
+              id="event-location"
+              name="location"
+              type="text"
+              value={form.location}
+              onChange={handleChange}
+              required
+              maxLength={64}
+              style={{
+                width: "100%",
+                marginTop: 3,
+                borderRadius: 6,
+                padding: "9px 13px",
+                background: "#232323",
+                color: "var(--accent)",
+                border: "1.1px solid var(--secondary)",
+                fontSize: "1rem",
+                outline: "none",
+                marginBottom: 2,
+              }}
+              aria-invalid={!!errors.location}
+              aria-describedby={errors.location ? "event-location-err" : undefined}
+            />
+            {errors.location && (
+              <div
+                id="event-location-err"
+                style={{
+                  color: "var(--secondary)",
+                  fontSize: "0.98em",
+                  marginBottom: 2,
+                }}
+                role="alert"
+              >
+                {errors.location}
+              </div>
+            )}
+          </div>
+          <div style={{ marginBottom: 12 }}>
+            <label
+              htmlFor="event-description"
+              style={{ color: "var(--text-secondary)", fontWeight: 500 }}
+            >
+              Description (optional)
+            </label>
+            <textarea
+              id="event-description"
+              name="description"
+              value={form.description}
+              onChange={handleChange}
+              maxLength={300}
+              placeholder="Let the community know what to expect..."
+              rows={3}
+              style={{
+                width: "100%",
+                marginTop: 3,
+                borderRadius: 6,
+                padding: "9px 12px",
+                background: "#232323",
+                color: "var(--accent)",
+                border: "1.1px solid var(--secondary)",
+                fontSize: "1rem",
+                outline: "none",
+                resize: "vertical",
+                marginBottom: 2,
+              }}
+              aria-invalid={!!errors.description}
+              aria-describedby={errors.description ? "event-description-err" : undefined}
+            />
+            {errors.description && (
+              <div
+                id="event-description-err"
+                style={{
+                  color: "var(--secondary)",
+                  fontSize: "0.98em",
+                  marginBottom: 2,
+                }}
+                role="alert"
+              >
+                {errors.description}
+              </div>
+            )}
+          </div>
+          <button
+            className="btn"
+            style={{
+              background: "var(--secondary)",
+              color: "var(--accent)",
+              fontWeight: 700,
+              borderRadius: 7,
+              marginTop: 2,
+              fontSize: "1.04rem",
+              padding: "10px 30px",
+              border: "1.1px solid var(--secondary)",
+            }}
+            type="submit"
+            disabled={
+              !form.name.trim() ||
+              !form.date ||
+              !form.time ||
+              !form.location.trim()
+            }
+          >
+            Add Event
+          </button>
+          {submitted && (
+            <div
+              style={{
+                color: "var(--accent)",
+                marginTop: 12,
+                background: "#163216",
+                borderRadius: 6,
+                padding: "8px 12px",
+                border: "1px solid #33FF33",
+                fontSize: 15,
+              }}
+              tabIndex={0}
+              aria-live="polite"
+            >
+              Event added! Thanks for contributing to your community.
+            </div>
+          )}
+        </form>
+      </section>
+    );
+  }
+
+  // Render the list of events. Use localEvents to reflect session additions.
   return (
     <section>
       <h2 style={{ color: "var(--accent)" }}>
         Chennai Events <span role="img" aria-label="Chennai">🛕</span>
       </h2>
-      {events.length ? (
+
+      {/* Conditional render: show event submission for registered users only */}
+      {user && renderEventForm()}
+
+      {localEvents && localEvents.length ? (
         <ul style={{ padding: 0, margin: 0, listStyle: "none" }}>
-          {events.map((ev, idx) => (
+          {localEvents.map((ev, idx) => (
             <li
               key={idx}
               style={{

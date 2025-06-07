@@ -2,9 +2,9 @@
 > react-kavia@0.1.0 start
 > react-scripts start
 
-(node:33649) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(node:36655) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 (Use `node --trace-deprecation ...` to show where the warning was created)
-(node:33649) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(node:36655) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 Starting the development server...
 
 Compiled with warnings.
@@ -23,19 +23,6 @@ src/App.js
   Line 16:10:  'weather' is assigned a value but never used  no-unused-vars
 
 webpack compiled with 1 warning
-Compiling...
-Failed to compile.
-
-Module not found: Error: Can't resolve './WeatherPage.css' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
-WARNING in [eslint] 
-src/App.js
-  Line 15:10:  'news' is assigned a value but never used     no-unused-vars
-  Line 16:10:  'weather' is assigned a value but never used  no-unused-vars
-
-ERROR in ./src/WeatherPage.js 6:0-27
-Module not found: Error: Can't resolve './WeatherPage.css' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
-
-webpack compiled with 1 error and 1 warning
 Compiling...
 Compiled with warnings.
 
