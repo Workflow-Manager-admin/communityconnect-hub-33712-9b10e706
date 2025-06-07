@@ -1,5 +1,13 @@
 import React from "react";
-import { Link, Routes, Route, Navigate, Outlet } from "react-router-dom";
+import { Link, Routes, Route, Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
+
+/*
+  ENHANCEMENT NOTE:
+  - This update ensures that whenever the user navigates to a different page
+    via the navbar (by clicking a nav item), the theme color remains red as long as the page is active.
+  - The red theme remains until another page/section is chosen by navigation.
+  - Hover/focus on nav can briefly show a hover color, but on page switch the app color sticks to red.
+*/
 
 // PUBLIC_INTERFACE
 /**
@@ -26,33 +34,44 @@ function MainContainer() {
     "--card-shadow": "0 3px 16px 0 rgba(0,0,0,0.13), 0 2px 9px 0 #14161822"
   };
 
-  // Map nav item to theme colors
-  const NAV_COLORS = {
-    Home:   { "--primary": "#23262D", "--secondary": "#ff0000", "--accent": "#67DEF6" },
-    News:   { "--primary": "#2440FA", "--secondary": "#4482F0", "--accent": "#B8DBFF" },      // blue
-    Weather: { "--primary": "#67DEF6", "--secondary": "#6976F6", "--accent": "#fff" },        // light blue/cyan
-    Resources: { "--primary": "#00C46F", "--secondary": "#3BB273", "--accent": "#fff" },      // green
-    Events: { "--primary": "#F69B32", "--secondary": "#F04C40", "--accent": "#fff9ce" },      // orange
-    Register: { "--primary": "#7F3AED", "--secondary": "#B15DF0", "--accent": "#fff" },       // purple (Account/Register)
-    Feedback: { "--primary": "#F04C40", "--secondary": "#B61F6A", "--accent": "#fff" }        // red/pink for feedback
+  // This will persistently set the color theme to 'red' for the current active page.
+  // If you want to add persistence per different routes, change this mapping,
+  // but this request wants ALL pages to be forced to red on navigation.
+  const redThemeVars = {
+    "--primary": "#20272D",
+    "--secondary": "#ff0000",
+    "--accent": "#fff",
+    "--container-bg": "#18191a",
+    "--card-bg": "#23262D"
   };
 
-  // State for theming
-  const [themeVars, setThemeVars] = React.useState(defaultThemeVars);
+  // Determine current route using useLocation hook (need to be inside <Router>)
+  // We'll conditionally apply the 'red' theme on every page change
+  // We will use a state value that updates on route change
+  const location = typeof window !== "undefined"
+    && window.location
+    ? { pathname: window.location.pathname }
+    : { pathname: "/" };
 
-  // Handle hover for nav
-  const handleNavHover = (navLabel) => {
-    if (NAV_COLORS[navLabel]) {
-      setThemeVars({
-        ...defaultThemeVars,
-        ...NAV_COLORS[navLabel]
-      });
-    }
+  // State for currently active 'red' theme
+  const [themeVars, setThemeVars] = React.useState({ ...defaultThemeVars, ...redThemeVars });
+
+  // Update theme to red every time the route changes (i.e., navigation occurs)
+  React.useEffect(() => {
+    setThemeVars((vars) => ({ ...vars, ...redThemeVars }));
+    // eslint-disable-next-line
+  }, [location.pathname]);
+
+  // Optionally, keep hover preview, but revert immediately to red when not hovered
+  // (Hover/focus is only cosmetic, does not override locked 'red' theme.)
+  const handleNavHover = () => {
+    setThemeVars((vars) => ({
+      ...vars,
+      "--secondary": "#dc143c"
+    }));
   };
-
-  // Reset theme to default when not hovering
   const handleNavUnhover = () => {
-    setThemeVars(defaultThemeVars);
+    setThemeVars((vars) => ({ ...vars, ...redThemeVars }));
   };
 
   // Placeholder for dashboard widgets (replace with actual API widgets)
@@ -174,7 +193,8 @@ function MainContainer() {
     );
   }
 
-  // Main Navigation with theme color change on hover
+  // Main Navigation with theme color change on hover and
+  // persistent red-theme on active route
   function NavBar() {
     const links = [
       { path: "/", label: "Home" },
@@ -186,8 +206,11 @@ function MainContainer() {
       { path: "/feedback", label: "Feedback" }
     ];
 
-    // Determine active route for highlight (supports feedback for color as well)
-    const pathname = window.location.pathname;
+    const pathname = typeof window !== "undefined"
+      && window.location
+      ? window.location.pathname
+      : "/";
+
     function isActive(route) {
       if (route === "/") return pathname === "/";
       return pathname.startsWith(route) && route !== "/";
@@ -229,8 +252,8 @@ function MainContainer() {
               <Link
                 to={link.path}
                 key={link.path}
-                onMouseEnter={() => handleNavHover(link.label)}
-                onFocus={() => handleNavHover(link.label)}
+                onMouseEnter={handleNavHover}
+                onFocus={handleNavHover}
                 onMouseLeave={handleNavUnhover}
                 onBlur={handleNavUnhover}
                 style={{
@@ -287,7 +310,7 @@ function MainContainer() {
     );
   }
 
-  // Main Layout
+  // Main Layout with persistent themeVars (always "red" theme)
   return (
     <div style={themeVars} className="container" tabIndex={-1}>
       {/* Accessible skip-to-main link */}
