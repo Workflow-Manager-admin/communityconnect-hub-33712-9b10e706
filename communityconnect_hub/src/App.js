@@ -216,7 +216,7 @@ function App() {
           }}
         >
           <WeatherPage weather={weather} />
-          <NewsPage news={news} />
+          <NewsPage />
           <EventsPage events={events} />
         </section>
       </>
@@ -257,7 +257,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route
                 path="/news"
-                element={<NewsPage news={news} />}
+                element={<NewsPage />}
               />
               <Route
                 path="/weather"
