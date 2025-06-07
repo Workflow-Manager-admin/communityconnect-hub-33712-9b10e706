@@ -1,0 +1,124 @@
+.homepage-main {
+  margin: 0;
+  padding: 0;
+  background: #20272D;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.display-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 1050px;
+  padding: 24px;
+}
+@media (max-width: 960px) {
+  .display-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .display-grid {
+    grid-template-columns: 1fr;
+    padding: 14px;
+  }
+}
+
+.feature-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.07), 0 1.5px 11px 0 #0003;
+  padding: 18px 16px 16px 16px;
+  min-height: 285px;
+  min-width: 0;
+  position: relative;
+  transition: box-shadow 0.18s, transform 0.14s;
+  outline: none;
+}
+.feature-card:focus-within,
+.feature-card:focus-visible {
+  outline: 2px solid #67DEF6;
+  box-shadow: 0 3px 33px 0 #67DEF677;
+}
+
+.feature-card-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 5px auto;
+}
+.feature-card-content {
+  width: 100%;
+  margin-top: 6px;
+  margin-bottom: 9px;
+}
+.feature-card-title {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.34rem;
+  font-weight: 700;
+  color: inherit;
+  letter-spacing: 0.01em;
+  margin: 0 0 2px 0;
+  line-height: 1.18;
+}
+.feature-card-category {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .045em;
+  opacity: 0.86;
+  margin-bottom: 4px;
+}
+.feature-card-desc {
+  font-size: 0.99rem;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: inherit;
+  font-weight: 400;
+  margin: 0 0 9px 0;
+  line-height: 1.36;
+  opacity: 0.92;
+}
+
+.feature-card-link {
+  font-size: 0.92rem;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: #67DEF6;
+  font-weight: 600;
+  text-decoration: underline dotted transparent;
+  background: none;
+  outline: none;
+  border: none;
+  padding: 1px 8px 1px 0;
+  margin: 0;
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  transition: color 0.13s, text-decoration 0.14s;
+}
+.feature-card-link:focus,
+.feature-card-link:focus-visible {
+  outline: 2px solid #67DEF6;
+  text-decoration: underline;
+  color: #67DEF6;
+  background: rgba(103,222,246,0.12);
+}
+.feature-card-link:hover, .feature-card-link:active {
+  text-decoration: underline;
+  color: #60E1E0;
+  background: rgba(103,222,246,0.10);
+}
+.screen-reader-only {
+  position: absolute;
+  width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); border: 0;
+}

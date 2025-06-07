@@ -8,6 +8,7 @@ import EventsPage from "./EventsPage";
 import ResourcesPage from "./ResourcesPage";
 import RegisterPage from "./RegisterPage";
 import FeedbackPage from "./FeedbackPage";
+import HomePage from "./HomePage";
 
 // PUBLIC_INTERFACE
 function App() {
@@ -173,56 +174,6 @@ function App() {
     );
   }
 
-  // ========== LANDING/HOME ========== //
-  function Home() {
-    return (
-      <>
-        <div
-          className="hero"
-          style={{
-            paddingTop: 50,
-            paddingBottom: 36,
-            textAlign: "center",
-            alignItems: "center",
-            gap: 16,
-          }}
-        >
-          <div className="subtitle" style={{ color: "var(--secondary)" }}>
-            Empowering our Community
-          </div>
-          <h1 className="title" style={{ color: "var(--accent)", fontWeight: 800 }}>
-            CommunityConnect Hub
-          </h1>
-          <div
-            className="description"
-            style={{ maxWidth: 650, color: "var(--text-secondary)", marginBottom: 4 }}
-          >
-            Central Hub for real-time local news, community resources, weather,
-            events, and more. Your one-stop destination for support, updates,
-            and engagement.
-          </div>
-          <div style={{ marginTop: 22, marginBottom: 0 }}>
-            <QuickLinks />
-          </div>
-        </div>
-        <section
-          className="dashboard"
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "18px",
-            justifyContent: "center",
-            margin: "32px 0",
-          }}
-        >
-          <WeatherPage />
-          <NewsPage />
-          <EventsPage events={events} />
-        </section>
-      </>
-    );
-  }
-
   // Quick Links to Community Resources
   function QuickLinks() {
     return (
@@ -254,7 +205,7 @@ function App() {
         <main style={{ marginTop: 70, paddingBottom: 40 }}>
           <div className="container">
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<HomePage />} />
               <Route
                 path="/news"
                 element={<NewsPage />}
