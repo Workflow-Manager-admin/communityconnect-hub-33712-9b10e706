@@ -114,11 +114,26 @@ body {
 }
 
 /* Focus/active current page in nav */
+/* Stronger selector to lock red theme for .navbar active (no override on hover/focus/active) */
 .navbar a[aria-current="page"] {
-  color: #67DEF6 !important;
-  font-weight: 700;
-  border-bottom: 2.9px solid #67DEF6 !important;
-  background: rgba(103,222,246,.10);
+  color: #ff0000 !important;
+  font-weight: 800 !important;
+  border-bottom: 3px solid #ff0000 !important;
+  background: rgba(255,0,0,0.14) !important;
+  text-decoration: underline !important;
+  pointer-events: auto;
+  transition: none !important;
+}
+.navbar a[aria-current="page"]:hover,
+.navbar a[aria-current="page"]:focus,
+.navbar a[aria-current="page"]:active {
+  color: #ff0000 !important;
+  border-bottom: 3px solid #ff0000 !important;
+  background: rgba(255,0,0,0.14) !important;
+  font-weight: 800 !important;
+  text-decoration: underline !important;
+  box-shadow: none !important;
+  outline: none !important;
 }
 
 /* --- FOOTER: Branded, accessible, unified site footer --- */

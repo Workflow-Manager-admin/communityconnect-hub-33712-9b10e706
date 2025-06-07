@@ -16,7 +16,7 @@
 */
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, Navigate, useLocation } from "react-router-dom";
 
 import NewsPage from "./NewsPage";
 import WeatherPage from "./WeatherPage";
@@ -148,8 +148,9 @@ function App() {
     // eslint-disable-next-line
   }, [searchQuery, resources]);
 
-  // THEME COLORS
-  const themeVars = {
+  // THEME COLORS - lock to RED ("#ff0000") when navigating via navbar or after any route change
+  // PUBLIC_INTERFACE
+  const RED_THEME = {
     "--primary": "#000000",
     "--secondary": "#ff0000",
     "--accent": "#ffffff",
@@ -157,6 +158,14 @@ function App() {
     "--base-light": "#ff0000",
     "--text-color": "#ffffff",
   };
+  
+  // Helper: update theme for <body> and :root (strongest cascade)
+  function applyRedTheme() {
+    if (typeof window !== "undefined") {
+      const root = document.documentElement;
+      Object.entries(RED_THEME).forEach(([k, v]) => root.style.setProperty(k, v));
+    }
+  }
 
   // ========== NAVBAR ========== //
   // PUBLIC_INTERFACE
@@ -424,14 +433,22 @@ function App() {
     );
   }
 
-  // ========== MAIN RENDER ========== //
-  return (
-    <div className="app" style={themeVars}>
-      <Router>
+  // ========== THEME LOCK: Apply on navigation and initial load ==========
+  function MainContainer() {
+    const location = useLocation();
+
+    useEffect(() => {
+      // Always lock theme to red variant for active page.
+      applyRedTheme();
+    }, [location]);
+
+    // ========== MAIN RENDER ========== //
+    return (
+      <div className="app" style={RED_THEME}>
         <Navbar />
         {/* Main landmark for a11y, has full container for skip content and improved focusability */}
-        <main 
-          id="main-content" 
+        <main
+          id="main-content"
           tabIndex={-1}
           style={{ marginTop: 75, paddingBottom: 40 }}
           aria-label="Main content"
@@ -440,18 +457,9 @@ function App() {
           <div className="container">
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route
-                path="/news"
-                element={<NewsPage />}
-              />
-              <Route
-                path="/weather"
-                element={<WeatherPage />}
-              />
-              <Route
-                path="/events"
-                element={<EventsPage events={events} />}
-              />
+              <Route path="/news" element={<NewsPage />} />
+              <Route path="/weather" element={<WeatherPage />} />
+              <Route path="/events" element={<EventsPage events={events} />} />
               <Route
                 path="/resources"
                 element={
@@ -489,10 +497,18 @@ function App() {
         </main>
         {/* Accessible footer, now with role and tab index for smoother focus navigation */}
         <Footer />
+      </div>
+    );
+  }
+
+  // Swap <App /> export to use MainContainer
+  export default function App() {
+    return (
+      <Router>
+        <MainContainer />
       </Router>
-    </div>
-  );
-}
+    );
+  }
 
 // Styling helpers (inline, to keep single-file for App.js)
 const navStyle = {
