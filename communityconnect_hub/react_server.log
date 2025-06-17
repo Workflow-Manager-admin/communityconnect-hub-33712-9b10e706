@@ -1,0 +1,294 @@
+
+> react-kavia@0.1.0 start
+> cross-env EDIT_MODE=true webpack serve --config .ve/webpack.config.js --mode development
+
+<i> [webpack-dev-server] Project is running at:
+<i> [webpack-dev-server] Loopback: http://localhost:3000/, http://[::1]:3000/
+<i> [webpack-dev-server] On Your Network (IPv4): http://172.17.0.2:3000/
+<i> [webpack-dev-server] Content not from webpack is served from './public' directory
+Injecting EditorRootWrapper import: ../.ve/EditorRootWrapper
+asset bundle.js 1.39 MiB [emitted] (name: main)
+asset index.html 1.92 KiB [emitted]
+runtime modules 27.5 KiB 14 modules
+modules by path ./node_modules/ 1.24 MiB 31 modules
+modules by path ./src/ 10.3 KiB
+  modules by path ./src/*.css 7.49 KiB 4 modules
+  modules by path ./src/*.js 2.76 KiB
+    ./src/index.js 530 bytes [built] [code generated]
+    ./src/App.js 2.24 KiB [built] [code generated]
+modules by path ./.ve/ 15.1 KiB
+  modules by path ./.ve/*.js 10.6 KiB 2 modules
+  modules by path ./.ve/*.css 2.93 KiB
+    ./.ve/EditorOverlay.css 2.25 KiB [built] [code generated]
+    ./node_modules/css-loader/dist/cjs.js!./.ve/EditorOverlay.css 697 bytes [built] [code generated]
+  ./.ve/EditorOverlay.jsx 1.58 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 1235 ms
+assets by status 1.92 KiB [cached] 1 asset
+assets by path *.js 1.41 MiB
+  asset bundle.js 1.4 MiB [emitted] (name: main)
+  asset main.03ccd4620936d5ce481e.hot-update.js 13.2 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.03ccd4620936d5ce481e.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.41 MiB = bundle.js 1.4 MiB main.03ccd4620936d5ce481e.hot-update.js 13.2 KiB
+cached modules 1.26 MiB [cached] 41 modules
+runtime modules 27.5 KiB 14 modules
+javascript modules 6.86 KiB
+  ./src/App.js 6.33 KiB [built] [code generated]
+  ./src/Theme.js 544 bytes [built] [code generated]
+
+ERROR in ./src/App.js 4:0-45
+Module not found: Error: Can't resolve './components/NewsFeed' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+ @ ./src/index.js 5:0-24 11:32-35
+
+ERROR in ./src/App.js 5:0-55
+Module not found: Error: Can't resolve './components/WeatherWidget' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+ @ ./src/index.js 5:0-24 11:32-35
+
+ERROR in ./src/App.js 6:0-51
+Module not found: Error: Can't resolve './components/EventsBoard' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+ @ ./src/index.js 5:0-24 11:32-35
+
+ERROR in ./src/App.js 7:0-65
+Module not found: Error: Can't resolve './components/ResourcesDirectory' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+ @ ./src/index.js 5:0-24 11:32-35
+
+ERROR in ./src/App.js 8:0-53
+Module not found: Error: Can't resolve './components/RegisterUser' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+ @ ./src/index.js 5:0-24 11:32-35
+
+ERROR in ./src/App.js 9:0-53
+Module not found: Error: Can't resolve './components/FeedbackForm' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+ @ ./src/index.js 5:0-24 11:32-35
+
+6 errors have detailed information that is not shown.
+Use 'stats.errorDetails: true' resp. '--stats-error-details' to show it.
+
+webpack 5.99.9 compiled with 6 errors in 133 ms
+assets by status 1.92 KiB [cached] 1 asset
+assets by path *.js 1.41 MiB
+  asset bundle.js 1.4 MiB [emitted] (name: main)
+  asset main.86a99cdc48ceeb7e63dc.hot-update.js 7.85 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.86a99cdc48ceeb7e63dc.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.41 MiB = bundle.js 1.4 MiB main.86a99cdc48ceeb7e63dc.hot-update.js 7.85 KiB
+cached modules 1.27 MiB [cached] 42 modules
+runtime modules 27.5 KiB 14 modules
+./node_modules/css-loader/dist/cjs.js!./src/App.css 5.24 KiB [built] [code generated]
+
+ERROR in ./src/App.js 4:0-45
+Module not found: Error: Can't resolve './components/NewsFeed' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+ @ ./src/index.js 5:0-24 11:32-35
+
+ERROR in ./src/App.js 5:0-55
+Module not found: Error: Can't resolve './components/WeatherWidget' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+ @ ./src/index.js 5:0-24 11:32-35
+
+ERROR in ./src/App.js 6:0-51
+Module not found: Error: Can't resolve './components/EventsBoard' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+ @ ./src/index.js 5:0-24 11:32-35
+
+ERROR in ./src/App.js 7:0-65
+Module not found: Error: Can't resolve './components/ResourcesDirectory' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+ @ ./src/index.js 5:0-24 11:32-35
+
+ERROR in ./src/App.js 8:0-53
+Module not found: Error: Can't resolve './components/RegisterUser' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+ @ ./src/index.js 5:0-24 11:32-35
+
+ERROR in ./src/App.js 9:0-53
+Module not found: Error: Can't resolve './components/FeedbackForm' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+ @ ./src/index.js 5:0-24 11:32-35
+
+6 errors have detailed information that is not shown.
+Use 'stats.errorDetails: true' resp. '--stats-error-details' to show it.
+
+webpack 5.99.9 compiled with 6 errors in 53 ms
+assets by status 1.92 KiB [cached] 1 asset
+assets by path *.js 1.42 MiB
+  asset bundle.js 1.41 MiB [emitted] (name: main)
+  asset main.68317eacab1658ce335f.hot-update.js 16 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.68317eacab1658ce335f.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.42 MiB = bundle.js 1.41 MiB main.68317eacab1658ce335f.hot-update.js 16 KiB
+cached modules 1.27 MiB [cached] 42 modules
+runtime modules 27.5 KiB 14 modules
+javascript modules 8.75 KiB
+  ./src/App.js 6.33 KiB [code generated]
+  ./src/components/NewsFeed.js 2.42 KiB [built] [code generated]
+
+ERROR in ./src/App.js 5:0-55
+Module not found: Error: Can't resolve './components/WeatherWidget' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+ @ ./src/index.js 5:0-24 11:32-35
+
+ERROR in ./src/App.js 6:0-51
+Module not found: Error: Can't resolve './components/EventsBoard' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+ @ ./src/index.js 5:0-24 11:32-35
+
+ERROR in ./src/App.js 7:0-65
+Module not found: Error: Can't resolve './components/ResourcesDirectory' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+ @ ./src/index.js 5:0-24 11:32-35
+
+ERROR in ./src/App.js 8:0-53
+Module not found: Error: Can't resolve './components/RegisterUser' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+ @ ./src/index.js 5:0-24 11:32-35
+
+ERROR in ./src/App.js 9:0-53
+Module not found: Error: Can't resolve './components/FeedbackForm' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+ @ ./src/index.js 5:0-24 11:32-35
+
+5 errors have detailed information that is not shown.
+Use 'stats.errorDetails: true' resp. '--stats-error-details' to show it.
+
+webpack 5.99.9 compiled with 5 errors in 64 ms
+assets by status 1.92 KiB [cached] 1 asset
+assets by path *.js 1.43 MiB
+  asset bundle.js 1.41 MiB [emitted] (name: main)
+  asset main.2081bd829c6aa1a25ba5.hot-update.js 15.5 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.2081bd829c6aa1a25ba5.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.43 MiB = bundle.js 1.41 MiB main.2081bd829c6aa1a25ba5.hot-update.js 15.5 KiB
+cached modules 1.27 MiB [cached] 43 modules
+runtime modules 27.5 KiB 14 modules
+javascript modules 8.38 KiB
+  ./src/App.js 6.33 KiB [code generated]
+  ./src/components/WeatherWidget.js 2.04 KiB [built] [code generated]
+
+ERROR in ./src/App.js 6:0-51
+Module not found: Error: Can't resolve './components/EventsBoard' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+ @ ./src/index.js 5:0-24 11:32-35
+
+ERROR in ./src/App.js 7:0-65
+Module not found: Error: Can't resolve './components/ResourcesDirectory' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+ @ ./src/index.js 5:0-24 11:32-35
+
+ERROR in ./src/App.js 8:0-53
+Module not found: Error: Can't resolve './components/RegisterUser' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+ @ ./src/index.js 5:0-24 11:32-35
+
+ERROR in ./src/App.js 9:0-53
+Module not found: Error: Can't resolve './components/FeedbackForm' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+ @ ./src/index.js 5:0-24 11:32-35
+
+4 errors have detailed information that is not shown.
+Use 'stats.errorDetails: true' resp. '--stats-error-details' to show it.
+
+webpack 5.99.9 compiled with 4 errors in 69 ms
+assets by status 1.92 KiB [cached] 1 asset
+assets by path *.js 1.43 MiB
+  asset bundle.js 1.41 MiB [emitted] (name: main)
+  asset main.a2d7e78776a62f9ba680.hot-update.js 15.7 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.a2d7e78776a62f9ba680.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.43 MiB = bundle.js 1.41 MiB main.a2d7e78776a62f9ba680.hot-update.js 15.7 KiB
+cached modules 1.27 MiB [cached] 44 modules
+runtime modules 27.5 KiB 14 modules
+javascript modules 8.58 KiB
+  ./src/App.js 6.33 KiB [code generated]
+  ./src/components/EventsBoard.js 2.25 KiB [built] [code generated]
+
+ERROR in ./src/App.js 7:0-65
+Module not found: Error: Can't resolve './components/ResourcesDirectory' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+ @ ./src/index.js 5:0-24 11:32-35
+
+ERROR in ./src/App.js 8:0-53
+Module not found: Error: Can't resolve './components/RegisterUser' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+ @ ./src/index.js 5:0-24 11:32-35
+
+ERROR in ./src/App.js 9:0-53
+Module not found: Error: Can't resolve './components/FeedbackForm' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+ @ ./src/index.js 5:0-24 11:32-35
+
+3 errors have detailed information that is not shown.
+Use 'stats.errorDetails: true' resp. '--stats-error-details' to show it.
+
+webpack 5.99.9 compiled with 3 errors in 54 ms
+assets by status 1.92 KiB [cached] 1 asset
+assets by path *.js 1.44 MiB
+  asset bundle.js 1.42 MiB [emitted] (name: main)
+  asset main.3bfea5945f59a46d2e89.hot-update.js 17.8 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.3bfea5945f59a46d2e89.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.44 MiB = bundle.js 1.42 MiB main.3bfea5945f59a46d2e89.hot-update.js 17.8 KiB
+cached modules 1.27 MiB [cached] 45 modules
+runtime modules 27.5 KiB 14 modules
+javascript modules 10.2 KiB
+  ./src/App.js 6.33 KiB [code generated]
+  ./src/components/ResourcesDirectory.js 3.83 KiB [built] [code generated]
+
+ERROR in ./src/App.js 8:0-53
+Module not found: Error: Can't resolve './components/RegisterUser' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+resolve './components/RegisterUser' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+  using description file: /home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/package.json (relative path: ./src)
+    Field 'browser' doesn't contain a valid alias configuration
+    using description file: /home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/package.json (relative path: ./src/components/RegisterUser)
+      no extension
+        Field 'browser' doesn't contain a valid alias configuration
+        /home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src/components/RegisterUser doesn't exist
+      .js
+        Field 'browser' doesn't contain a valid alias configuration
+        /home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src/components/RegisterUser.js doesn't exist
+      .jsx
+        Field 'browser' doesn't contain a valid alias configuration
+        /home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src/components/RegisterUser.jsx doesn't exist
+      as directory
+        /home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src/components/RegisterUser doesn't exist
+ @ ./src/index.js 5:0-24 11:32-35
+
+ERROR in ./src/App.js 9:0-53
+Module not found: Error: Can't resolve './components/FeedbackForm' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+resolve './components/FeedbackForm' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+  using description file: /home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/package.json (relative path: ./src)
+    Field 'browser' doesn't contain a valid alias configuration
+    using description file: /home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/package.json (relative path: ./src/components/FeedbackForm)
+      no extension
+        Field 'browser' doesn't contain a valid alias configuration
+        /home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src/components/FeedbackForm doesn't exist
+      .js
+        Field 'browser' doesn't contain a valid alias configuration
+        /home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src/components/FeedbackForm.js doesn't exist
+      .jsx
+        Field 'browser' doesn't contain a valid alias configuration
+        /home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src/components/FeedbackForm.jsx doesn't exist
+      as directory
+        /home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src/components/FeedbackForm doesn't exist
+ @ ./src/index.js 5:0-24 11:32-35
+
+webpack 5.99.9 compiled with 2 errors in 59 ms
+assets by status 1.92 KiB [cached] 1 asset
+assets by path *.js 1.44 MiB
+  asset bundle.js 1.42 MiB [emitted] (name: main)
+  asset main.408b9f4a6de20a4ffc2a.hot-update.js 17 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.408b9f4a6de20a4ffc2a.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.44 MiB = bundle.js 1.42 MiB main.408b9f4a6de20a4ffc2a.hot-update.js 17 KiB
+cached modules 1.28 MiB [cached] 46 modules
+runtime modules 27.5 KiB 14 modules
+javascript modules 9.71 KiB
+  ./src/App.js 6.33 KiB [code generated]
+  ./src/components/RegisterUser.js 3.38 KiB [built] [code generated]
+
+ERROR in ./src/App.js 9:0-53
+Module not found: Error: Can't resolve './components/FeedbackForm' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+resolve './components/FeedbackForm' in '/home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src'
+  using description file: /home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/package.json (relative path: ./src)
+    Field 'browser' doesn't contain a valid alias configuration
+    using description file: /home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/package.json (relative path: ./src/components/FeedbackForm)
+      no extension
+        Field 'browser' doesn't contain a valid alias configuration
+        /home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src/components/FeedbackForm doesn't exist
+      .js
+        Field 'browser' doesn't contain a valid alias configuration
+        /home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src/components/FeedbackForm.js doesn't exist
+      .jsx
+        Field 'browser' doesn't contain a valid alias configuration
+        /home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src/components/FeedbackForm.jsx doesn't exist
+      as directory
+        /home/kavia/workspace/code-generation/copy-of-commut-hub-33712-communityconnect-hub-33712-9b10e706-35452/communityconnect_hub/src/components/FeedbackForm doesn't exist
+ @ ./src/index.js 5:0-24 11:32-35
+
+webpack 5.99.9 compiled with 1 error in 53 ms
+assets by status 1.92 KiB [cached] 1 asset
+assets by path *.js 1.45 MiB
+  asset bundle.js 1.43 MiB [emitted] (name: main)
+  asset main.88e1dc3eed3c9d006565.hot-update.js 16.3 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.88e1dc3eed3c9d006565.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.45 MiB = bundle.js 1.43 MiB main.88e1dc3eed3c9d006565.hot-update.js 16.3 KiB
+cached modules 1.28 MiB [cached] 47 modules
+runtime modules 27.5 KiB 14 modules
+javascript modules 9.2 KiB
+  ./src/App.js 6.33 KiB [code generated]
+  ./src/components/FeedbackForm.js 2.87 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 60 ms

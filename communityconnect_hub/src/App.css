@@ -1,0 +1,255 @@
+:root {
+  --cc-bg: #000000;
+  --cc-secondary: #ff0000;
+  --cc-accent: #ffffff;
+  --cc-card-bg: #111111;
+  --cc-border: #333333;
+  --cc-muted: #666666;
+  --cc-nav-bg: #181818;
+  --cc-input-bg: #18181a;
+  --cc-input-border: #222;
+}
+
+body {
+  background: var(--cc-bg);
+  color: var(--cc-accent);
+  font-family: "Inter", "Roboto", "Helvetica", "Arial", sans-serif;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Main App Layout */
+.cc-app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--cc-bg);
+}
+
+/* Navbar */
+.cc-navbar {
+  background: var(--cc-nav-bg);
+  color: var(--cc-accent);
+  padding: 0;
+  border-bottom: 2px solid var(--cc-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  box-sizing: border-box;
+}
+.cc-navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  padding: 0 32px;
+  margin: 0 auto;
+  height: 64px;
+}
+.cc-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: var(--cc-accent);
+}
+.cc-logo-symbol {
+  color: var(--cc-secondary);
+  font-size: 2rem;
+}
+.cc-nav-links a {
+  color: var(--cc-accent);
+  text-decoration: none;
+  margin-left: 24px;
+  font-weight: 500;
+  transition: color 0.16s;
+}
+.cc-nav-links a:hover {
+  color: var(--cc-secondary);
+}
+
+/* Hero Section */
+.cc-hero {
+  padding: 100px 0 48px 0;
+  background: var(--cc-bg);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+.cc-title {
+  font-size: 2.8rem;
+  color: var(--cc-secondary);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.cc-searchbar {
+  display: flex;
+  align-items: center;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto 16px auto;
+  gap: 8px;
+}
+.cc-input {
+  flex: 1;
+  padding: 11px 14px;
+  border-radius: 5px;
+  border: 1.5px solid var(--cc-input-border);
+  background: var(--cc-input-bg);
+  color: var(--cc-accent);
+  font-size: 1.09rem;
+  margin-right: 7px;
+}
+.cc-quick-links {
+  display: flex;
+  gap: 18px;
+  margin-top: 6px;
+  justify-content: center;
+}
+
+/* Button styling */
+.cc-btn {
+  padding: 10px 24px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 1.03rem;
+  color: var(--cc-bg);
+  background: var(--cc-accent);
+  border: none;
+  cursor: pointer;
+  transition: all 0.18s;
+  text-decoration: none;
+  display: inline-block;
+}
+.cc-btn:hover {
+  background: var(--cc-secondary);
+  color: var(--cc-accent);
+}
+.cc-btn-secondary {
+  background: var(--cc-secondary);
+  color: var(--cc-accent);
+}
+.cc-btn-secondary:hover {
+  background: var(--cc-accent);
+  color: var(--cc-secondary);
+}
+.cc-btn-accent {
+  background: transparent;
+  border: 2px solid var(--cc-accent);
+  color: var(--cc-accent);
+}
+.cc-btn-accent:hover {
+  background: var(--cc-accent);
+  color: var(--cc-bg);
+}
+
+/* Dashboard grid */
+.cc-dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 26px;
+  padding: 18px 8vw 18px 8vw;
+  background: var(--cc-bg);
+}
+
+.cc-dashboard-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+
+.cc-dashboard-col {
+  flex-basis: 32%;
+  background: var(--cc-card-bg);
+  border-radius: 8px;
+  border: 1.5px solid var(--cc-border);
+  min-width: 260px;
+  min-height: 260px;
+  padding: 24px 16px 16px 16px;
+  margin-bottom: 0;
+  box-sizing: border-box;
+  color: var(--cc-accent);
+}
+
+/* Main wide section (resources, registration, feedback) */
+.cc-wide-section {
+  margin: 40px auto 0 auto;
+  max-width: 960px;
+  padding: 32px 26px 32px 26px;
+  background: var(--cc-card-bg);
+  border-radius: 9px;
+  color: var(--cc-accent);
+  border: 1.5px solid var(--cc-border);
+}
+
+.cc-section-title {
+  font-size: 2.1rem;
+  margin-bottom: 18px;
+  color: var(--cc-secondary);
+}
+.cc-section-desc {
+  color: var(--cc-muted);
+}
+
+/* Forms, feedback, registration */
+.cc-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 12px;
+}
+.cc-form label {
+  color: var(--cc-accent);
+  font-weight: 500;
+}
+.cc-form input,
+.cc-form textarea,
+.cc-form select {
+  padding: 9px 11px;
+  font-size: 1rem;
+  background: var(--cc-input-bg);
+  border: 1.5px solid var(--cc-input-border);
+  color: var(--cc-accent);
+  border-radius: 4px;
+  outline: none;
+}
+.cc-form input:focus,
+.cc-form textarea:focus,
+.cc-form select:focus {
+  border-color: var(--cc-secondary);
+}
+.cc-form button {
+  margin-top: 10px;
+}
+
+/* Footer */
+.cc-footer {
+  background: var(--cc-nav-bg);
+  color: var(--cc-muted);
+  text-align: center;
+  padding: 22px 0 18px 0;
+  font-size: 1rem;
+  margin-top: 65px;
+  border-top: 2px solid var(--cc-border);
+}
+
+/* Misc classes for skeletons/demo */
+.cc-skeleton {
+  background: #232323;
+  border-radius: 5px;
+  min-height: 16px;
+  margin-bottom: 12px;
+  animation: pulse 1.6s infinite linear;
+}
+@keyframes pulse {
+  0% { opacity: 0.65; }
+  50% { opacity: 0.35; }
+  100% { opacity: 0.65; }
+}
